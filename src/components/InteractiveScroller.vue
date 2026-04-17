@@ -2,19 +2,19 @@
 import { computed, onMounted, onUnmounted, ref } from "vue";
 
 defineProps({
-  /** true = trilho claro (hero escuro). */
+  /** true = trilho claro (quando o hero estiver escuro) */
   lightTrack: { type: Boolean, default: false },
 });
 
-const lineExpanded = ref(false);
-const dragging = ref(false);
-const dragStartY = ref(0);
-const dragStartScroll = ref(0);
-const activePointerId = ref(null);
+const TRACK_HEIGHT = 220;
 
 const progressTarget = ref(0);
 const progressLerp = ref(0);
+const active = ref(false);
+const dragging = ref(false);
+const trackEl = ref(null);
 let raf = 0;
+let activePointerId = null;
 
 function scrollMax() {
   const el = document.documentElement;
@@ -23,12 +23,12 @@ function scrollMax() {
 
 function tick() {
   const diff = progressTarget.value - progressLerp.value;
-  if (Math.abs(diff) < 0.01) {
+  if (Math.abs(diff) < 0.05) {
     progressLerp.value = progressTarget.value;
     raf = 0;
     return;
   }
-  progressLerp.value += diff * 0.18;
+  progressLerp.value += diff * 0.22;
   raf = requestAnimationFrame(tick);
 }
 
@@ -43,66 +43,68 @@ function syncFromScroll() {
     return;
   }
   const max = scrollMax();
-  progressTarget.value = max <= 0 ? 0 : Math.min(100, Math.max(0, (window.scrollY / max) * 100));
+  const pct = max <= 0 ? 0 : Math.min(100, Math.max(0, (window.scrollY / max) * 100));
+  progressTarget.value = pct;
+  active.value = window.scrollY > 40;
   kickRaf();
 }
 
-function onPointerDown(e) {
-  dragging.value = true;
-  lineExpanded.value = true;
-  activePointerId.value = e.pointerId;
-  dragStartY.value = e.clientY;
-  dragStartScroll.value = window.scrollY;
-  window.addEventListener("pointermove", onWindowPointerMove);
-  window.addEventListener("pointerup", onWindowPointerUp);
-  window.addEventListener("pointercancel", onWindowPointerUp);
-  e.preventDefault();
+function pctFromClientY(clientY) {
+  if (!trackEl.value) {
+    return 0;
+  }
+  const rect = trackEl.value.getBoundingClientRect();
+  const y = clientY - rect.top;
+  const pct = (y / rect.height) * 100;
+  return Math.min(100, Math.max(0, pct));
 }
 
-function onWindowPointerMove(e) {
-  if (!dragging.value || e.pointerId !== activePointerId.value) {
-    return;
-  }
+function jumpTo(pct) {
   const max = scrollMax();
   if (max <= 0) {
     return;
   }
-  const trackPx = 150;
-  const delta = e.clientY - dragStartY.value;
-  const next = Math.min(max, Math.max(0, dragStartScroll.value + (delta / trackPx) * max));
-  window.scrollTo({ top: next, behavior: "auto" });
-  progressTarget.value = (next / max) * 100;
-  kickRaf();
+  window.scrollTo({ top: (pct / 100) * max, behavior: "auto" });
+  progressTarget.value = pct;
+  progressLerp.value = pct;
 }
 
-function onWindowPointerUp(e) {
-  if (e.pointerId !== activePointerId.value) {
+function onTrackPointerDown(e) {
+  dragging.value = true;
+  active.value = true;
+  activePointerId = e.pointerId;
+  e.target.setPointerCapture?.(e.pointerId);
+  jumpTo(pctFromClientY(e.clientY));
+  e.preventDefault();
+}
+
+function onTrackPointerMove(e) {
+  if (!dragging.value || e.pointerId !== activePointerId) {
+    return;
+  }
+  jumpTo(pctFromClientY(e.clientY));
+}
+
+function onTrackPointerUp(e) {
+  if (e.pointerId !== activePointerId) {
     return;
   }
   dragging.value = false;
-  lineExpanded.value = false;
-  activePointerId.value = null;
-  window.removeEventListener("pointermove", onWindowPointerMove);
-  window.removeEventListener("pointerup", onWindowPointerUp);
-  window.removeEventListener("pointercancel", onWindowPointerUp);
-  syncFromScroll();
+  activePointerId = null;
+  e.target.releasePointerCapture?.(e.pointerId);
 }
 
-function onOverEnter() {
+function onEnter() {
+  active.value = true;
+}
+
+function onLeave() {
   if (!dragging.value) {
-    lineExpanded.value = true;
+    active.value = window.scrollY > 40;
   }
 }
 
-function onOverLeave() {
-  if (!dragging.value) {
-    lineExpanded.value = false;
-  }
-}
-
-const knobY = computed(() => (150 * progressLerp.value) / 100);
-const lineScaleY = computed(() => (lineExpanded.value ? 1 : 0.33333));
-const cursorScale = computed(() => (lineExpanded.value ? 1 : 0.66667));
+const knobY = computed(() => (TRACK_HEIGHT * progressLerp.value) / 100);
 
 onMounted(() => {
   syncFromScroll();
@@ -113,9 +115,6 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("scroll", syncFromScroll);
   window.removeEventListener("resize", syncFromScroll);
-  window.removeEventListener("pointermove", onWindowPointerMove);
-  window.removeEventListener("pointerup", onWindowPointerUp);
-  window.removeEventListener("pointercancel", onWindowPointerUp);
   if (raf) {
     cancelAnimationFrame(raf);
   }
@@ -126,36 +125,30 @@ onUnmounted(() => {
   <div
     id="interactive-scroller"
     class="interactive-scroller"
-    :class="{ 'interactive-scroller--light': lightTrack }"
+    :class="{
+      'interactive-scroller--light': lightTrack,
+      'interactive-scroller--active': active,
+      'interactive-scroller--dragging': dragging,
+    }"
     aria-hidden="true"
+    @pointerenter="onEnter"
+    @pointerleave="onLeave"
   >
-    <div class="interactive-scroller__inner">
-      <div
-        class="interactive-scroller__over-area"
-        @pointerenter="onOverEnter"
-        @pointerleave="onOverLeave"
-      >
-        <div
-          class="interactive-scroller__cursor-container"
-          :style="{ transform: `translate3d(0px, ${knobY - 64}px, 0px)` }"
-        >
-          <div
-            class="interactive-scroller__cursor"
-            :style="{ transform: `translate3d(0px,0px,0px) scale(${cursorScale}, ${cursorScale})` }"
-            @pointerdown="onPointerDown"
-          />
-        </div>
-        <div
-          class="interactive-scroller__line-container"
-          :style="{ transform: `translate(0%, 55%) translate3d(0px, ${knobY * 0.35}px, 0px)` }"
-        >
-          <div
-            class="interactive-scroller__line"
-            :style="{ transform: `scale(1, ${lineScaleY})` }"
-          />
-          <div class="interactive-scroller__label">Scroll</div>
-        </div>
-      </div>
+    <span class="interactive-scroller__label">Scroll</span>
+    <div
+      ref="trackEl"
+      class="interactive-scroller__track"
+      :style="{ height: `${TRACK_HEIGHT}px` }"
+      @pointerdown="onTrackPointerDown"
+      @pointermove="onTrackPointerMove"
+      @pointerup="onTrackPointerUp"
+      @pointercancel="onTrackPointerUp"
+    >
+      <span class="interactive-scroller__line" />
+      <span
+        class="interactive-scroller__knob"
+        :style="{ transform: `translate3d(-50%, ${knobY}px, 0)` }"
+      />
     </div>
   </div>
 </template>

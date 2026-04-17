@@ -68,6 +68,17 @@
 
 html {
   scroll-behavior: smooth;
+  /* Esconde a barra de scroll padrão (Firefox) */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Esconde a barra de scroll padrão (WebKit/Blink) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
 }
 
 body {
@@ -79,6 +90,8 @@ body {
   font-size: clamp(0.95rem, 0.9rem + 0.35vw, 1.05rem);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 img {

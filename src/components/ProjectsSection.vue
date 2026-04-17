@@ -35,15 +35,15 @@ const emit = defineEmits(["go"]);
               class="project-image"
               :class="index % 2 === 0 ? 'even' : 'odd'"
             >
-              <div class="project-image_inner" data-parallax="0.06">
+              <div class="project-image_inner">
                 <div class="project-image_inner-reverse">
                   <div class="o-background">
                     <img
                       class="project-image_background"
                       :src="p.img"
                       :alt="p.alt"
-                      width="900"
-                      height="1200"
+                      width="800"
+                      height="600"
                       loading="lazy"
                     />
                   </div>
@@ -54,7 +54,7 @@ const emit = defineEmits(["go"]);
           <div class="project-info">
             <a class="project-info_wrapper" href="#" @click.prevent>
               <div class="project-info_date overtitle">{{ p.tipo }}</div>
-              <h3 class="project-info_name">{{ p.nome }}</h3>
+              <h2 class="project-info_name">{{ p.nome }}</h2>
               <p v-if="p.resumo" class="project-info_excerpt">{{ p.resumo }}</p>
             </a>
           </div>

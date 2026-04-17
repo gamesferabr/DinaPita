@@ -3,6 +3,7 @@ import { watch } from "vue";
 import { projetos, brand } from "./data/siteContent.js";
 import { useScrollTo } from "./composables/useScrollTo.js";
 import { useNavTone } from "./composables/useNavTone.js";
+import { useDarkSection } from "./composables/useDarkSection.js";
 import { useParallax } from "./composables/useParallax.js";
 import SiteShellNav from "./components/SiteShellNav.vue";
 import InteractiveScroller from "./components/InteractiveScroller.vue";
@@ -15,6 +16,7 @@ import SiteFooter from "./components/SiteFooter.vue";
 const ano = new Date().getFullYear();
 const { menuOpen, scrollTo, go } = useScrollTo();
 const { heroIsVisible } = useNavTone("#topo");
+const { isOverDark } = useDarkSection(["#topo", ".footer__content"]);
 
 useParallax("[data-parallax]");
 
@@ -40,7 +42,7 @@ watch(menuOpen, (open) => {
       @go="go"
     />
 
-    <InteractiveScroller :light-track="false" />
+    <InteractiveScroller :light-track="isOverDark" />
     <SiteCursor />
 
     <main id="main-container" class="scroll-container" aria-live="polite">

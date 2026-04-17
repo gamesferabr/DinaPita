@@ -1,4 +1,4 @@
-/* Shell inspirado na arquitetura visual do site de referùncia ù estilos prùprios, paleta Dina Pita */
+/* Shell inspirado na arquitetura visual do site de refer?ncia ? estilos pr?prios, paleta Dina Pita */
 
 .app--shell {
   padding-left: 0;
@@ -11,10 +11,10 @@ body.nav-open {
   max-height: 100vh;
 }
 
-/* ùùù Fundos do menu (painùis deslizantes) ùùù */
-/* ùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùù
- * Header clean: logo + navegaùùo inline + drawer mobile
- * ùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùùù */
+/* ??? Fundos do menu (pain?is deslizantes) ??? */
+/* ????????????????????????????????????
+ * Header clean: logo + navega??o inline + drawer mobile
+ * ????????????????????????????????????? */
 
 .site-nav {
   position: fixed;
@@ -34,7 +34,7 @@ body.nav-open {
   color: var(--text);
 }
 
-/* Sobre o hero em vùdeo: transparente, texto branco */
+/* Sobre o hero em v?deo: transparente, texto branco */
 .site-nav.site-nav--on-media {
   background: transparent;
   border-bottom-color: transparent;
@@ -278,86 +278,99 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   width: 100%;
 }
 
-/* ùùù Interactive scroller ùùù */
+/* =========================================================================
+ * Interactive scroller ù indicador de progresso discreto na lateral esquerda
+ * (linha + bolinha + label "SCROLL" na vertical)
+ * ========================================================================= */
 .interactive-scroller {
   display: none;
 }
 
 @media (min-width: 992px) {
   .interactive-scroller {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
     position: fixed;
     z-index: 90;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100px;
-    pointer-events: none;
+    top: 50%;
+    left: clamp(1rem, 2vw, 2rem);
+    transform: translateY(-50%);
+    color: var(--text);
+    pointer-events: auto;
     user-select: none;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+  }
+
+  .interactive-scroller--active {
+    opacity: 0.75;
+  }
+
+  .interactive-scroller--active:hover {
+    opacity: 1;
   }
 }
 
-.interactive-scroller__inner {
-  position: absolute;
-  inset: 0;
-  transform-origin: 100% 100%;
+.interactive-scroller--light {
+  color: #fff;
 }
 
-.interactive-scroller__over-area {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  pointer-events: auto;
+.interactive-scroller--light .interactive-scroller__line { opacity: 0.45; }
+.interactive-scroller--light.interactive-scroller--active .interactive-scroller__line { opacity: 0.7; }
+
+.interactive-scroller__label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: currentColor;
+  opacity: 0.7;
 }
 
-.interactive-scroller__cursor-container,
-.interactive-scroller__line-container {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  right: 0;
-  height: 150px;
-  transform-origin: 0 0;
-  pointer-events: none;
-}
-
-.interactive-scroller__cursor-container {
-  z-index: 2;
-  pointer-events: none;
-}
-
-.interactive-scroller__cursor {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  margin-left: -7.5px;
-  margin-top: -7.5px;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: currentColor;
-  cursor: pointer;
-  pointer-events: auto;
-  user-select: none;
+/* Pista clicùvel: 18px de ùrea de hit, mas a linha visùvel tem 1px */
+.interactive-scroller__track {
+  position: relative;
+  width: 18px;
+  cursor: ns-resize;
   touch-action: none;
 }
 
-.interactive-scroller__line-container {
-  pointer-events: none;
-}
-
 .interactive-scroller__line {
-  position: relative;
+  position: absolute;
+  top: 0;
   bottom: 0;
   left: 50%;
-  height: 150px;
+  transform: translateX(-50%);
   width: 1px;
-  margin-left: -0.5px;
   background: currentColor;
-  transform-origin: 0 100%;
-  opacity: 0.55;
+  opacity: 0.25;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+.interactive-scroller--active .interactive-scroller__line { opacity: 0.5; }
+
+.interactive-scroller__knob {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: currentColor;
+  pointer-events: none;
+  will-change: transform;
+  transition: width 0.25s var(--ease), height 0.25s var(--ease);
+}
+
+.interactive-scroller--dragging .interactive-scroller__knob,
+.interactive-scroller:hover .interactive-scroller__knob {
+  width: 13px;
+  height: 13px;
 }
 
 .interactive-scroller__label {
@@ -383,7 +396,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   color: #fff;
 }
 
-/* ùùù Cursor decorativo ùùù */
+/* ??? Cursor decorativo ??? */
 .site-cursor {
   display: none;
 }
@@ -429,73 +442,162 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   }
 }
 
-/* ùùù Lista de projetos editorial ùùù */
+/* =========================================================================
+ * Lista de projetos ? layout editorial inspirado no Rezo Zero:
+ * itens em coluna com sobreposiù?o vertical, imagens alternando lados
+ * e texto posicionado de forma absoluta junto ? linha central.
+ * ========================================================================= */
 .section--projects-list {
-  padding-left: max(var(--space-lg), 8.333vw);
-  padding-right: max(var(--space-lg), 6vw);
+  padding-left: 0;
+  padding-right: 0;
+  overflow: hidden;
 }
 
 .projects-list__head {
   max-width: none;
-  margin-bottom: 2.5rem;
+  margin: 0 0 2.5rem;
+  padding: 0 max(var(--space-lg), 8.333vw);
 }
 
 .introduction-scale {
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
 }
 
-/* ùùù Lista de projetos em grid editorial (2 colunas com linha central) ùùù */
 .project-list_wrapper {
   position: relative;
+  z-index: 1;
   width: 100%;
-  margin-top: 0;
   padding-bottom: 15vh;
 }
 
-/* linha central fina, do topo ao ùltimo item ù em telas >= sm */
+/* Linha vertical central ? visùvel a partir de >=576px */
 .project-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background-color: color-mix(in srgb, var(--ash) 60%, transparent);
+  pointer-events: none;
   display: none;
 }
 
-@media (min-width: 768px) {
-  .project-line {
-    display: block;
-    position: absolute;
-    top: 2rem;
-    bottom: 8rem;
-    left: 50%;
-    width: 1px;
-    background: color-mix(in srgb, var(--ash) 60%, transparent);
-    pointer-events: none;
-  }
+@media (min-width: 576px) {
+  .project-line { display: block; }
 }
 
+/* Lista em coluna */
 .project-list {
   position: relative;
   display: flex;
-  flex-direction: column;
-  list-style: none;
+  flex-flow: column;
   margin: 0;
   padding: 0;
-  gap: 4rem;
+  margin-top: 75px;
 }
 
-/* mobile: imagens empilhadas, ocupando toda a largura */
+@media (min-width: 576px) {
+  .project-list {
+    margin-top: 0;
+    padding-bottom: 30vh;
+  }
+}
+
+@media (min-width: 992px) {
+  .project-list { padding-bottom: 15vw; }
+}
+
+/* Item ù 1 imagem por cartùo, com altura independente (evita imagens invadindo
+ * o item vizinho). Sem sobreposiùùo vertical para clareza editorial. */
 .project-list_item {
   position: relative;
-  width: 100%;
-}
-
-.project-image-link {
   display: block;
-  pointer-events: auto;
   width: 100%;
+  height: auto;
+  pointer-events: none;
 }
 
-.project-image {
+@media (min-width: 576px) {
+  .project-list_item + .project-list_item { margin-top: 5vw; }
+}
+
+@media (min-width: 992px) {
+  .project-list_item + .project-list_item { margin-top: 7vw; }
+}
+
+.project-list_item a {
+  pointer-events: auto;
+  display: inline-block;
+}
+
+/* Alternùncia ancorada ù linha central:
+ *   ùmpar  ? imagem logo ù direita da linha; texto logo ù esquerda
+ *   par    ? imagem logo ù esquerda da linha; texto logo ù direita
+ */
+/* Grid 2 colunas: imagem e texto lado a lado, alinhados pelo topo */
+@media (min-width: 576px) {
+  .project-list_item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    column-gap: clamp(2rem, 4vw, 4rem);
+    padding: 0 max(var(--space-lg), 6vw);
+  }
+
+  .project-list_item:nth-child(odd) .project-image-link {
+    grid-column: 2; grid-row: 1;
+    justify-self: start;
+  }
+  .project-list_item:nth-child(odd) .project-info {
+    grid-column: 1; grid-row: 1;
+    justify-self: end;
+    text-align: right;
+  }
+
+  .project-list_item:nth-child(even) .project-image-link {
+    grid-column: 1; grid-row: 1;
+    justify-self: end;
+  }
+  .project-list_item:nth-child(even) .project-info {
+    grid-column: 2; grid-row: 1;
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+/* Link que envolve a imagem ù cartùo real com proporùùo estùvel */
+.project-image-link,
+.project-image-link.project {
   position: relative;
+  overflow: hidden;
   width: 100%;
   aspect-ratio: 4 / 3;
+  height: auto;
+  display: block;
+}
+
+@media (min-width: 576px) {
+  .project-image-link,
+  .project-image-link.project {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .project-image-link,
+  .project-image-link.project {
+    max-width: 480px;
+  }
+}
+
+/* Caixa interna da imagem ù preenche o link sem vazar */
+.project-image {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   background: var(--bg-elevated);
 }
@@ -509,86 +611,41 @@ body.nav-open .site-nav__toggle-icon span:last-child {
 
 .o-background {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .project-image_background {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
+/* Bloco de info ù mobile: abaixo da imagem; desktop: absoluto ao lado oposto */
 .project-info {
   position: relative;
   z-index: 2;
-  margin: 1.25rem 0 0;
-  text-align: left;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 1.25rem 0 3rem;
+  font-size: 1rem;
+  line-height: 1.2;
+  opacity: 1;
 }
 
-/* ùùù Desktop ? 768: grid 2 colunas, imagens sobrepostas, texto na linha ùùù */
-@media (min-width: 768px) {
-  .project-list {
-    gap: 6rem;
-  }
-
-  .project-list_item {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    column-gap: clamp(2rem, 5vw, 4.5rem);
-  }
-
-  /* itens pares: imagem ù esquerda, texto ù direita (junto ù linha) */
-  .project-list_item--even .project-image-link {
-    grid-column: 1;
-    justify-self: start;
-    width: min(42vw, 520px);
-  }
-
-  .project-list_item--even .project-info {
-    grid-column: 2;
-    justify-self: start;
-    text-align: left;
-    padding: 0 1rem 0 clamp(1rem, 3vw, 2.5rem);
-    max-width: 26rem;
-  }
-
-  /* itens ùmpares: imagem ù direita, texto ù esquerda (junto ù linha) */
-  .project-list_item--odd .project-image-link {
-    grid-column: 2;
-    justify-self: end;
-    width: min(42vw, 520px);
-  }
-
-  .project-list_item--odd .project-info {
-    grid-column: 1;
-    justify-self: end;
-    text-align: right;
-    padding: 0 clamp(1rem, 3vw, 2.5rem) 0 1rem;
-    max-width: 26rem;
-  }
-
-  .project-image {
-    aspect-ratio: 4 / 3;
-    height: auto;
-    max-height: 32vw;
-  }
-}
-
-/* proporùùo um pouco mais retrato em telas grandes para dar mais respiro */
-@media (min-width: 1200px) {
-  .project-list {
-    gap: 8rem;
-  }
-
-  .project-list_item--even .project-image-link,
-  .project-list_item--odd .project-image-link {
-    width: min(40vw, 560px);
-  }
-
-  .project-image {
-    max-height: 30vw;
+@media (min-width: 576px) {
+  .project-info {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin: 0;
   }
 }
 
@@ -597,6 +654,12 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   position: relative;
   color: inherit;
   text-decoration: none;
+}
+
+@media (min-width: 576px) {
+  .project-info_wrapper {
+    padding: 0.25rem 0 0;
+  }
 }
 
 .project-info_date.overtitle {
@@ -612,15 +675,24 @@ body.nav-open .site-nav__toggle-icon span:last-child {
 
 .project-info_name {
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
   font-weight: 400;
-  line-height: 1.18;
-  margin: 0;
+  line-height: 1.3;
+  font-size: 1.5rem;
+  max-width: 266px;
+  margin: 0.35rem 0 0;
+  padding: 0;
   color: var(--text);
   transition: color 0.35s var(--ease);
   overflow-wrap: break-word;
-  word-break: normal;
   text-wrap: balance;
+}
+
+@media (min-width: 768px) {
+  .project-info_name {
+    font-size: clamp(1.25rem, 1.6vw, 1.75rem);
+    max-width: none;
+    margin: 0;
+  }
 }
 
 .project-info_wrapper:hover .project-info_name {
@@ -628,19 +700,30 @@ body.nav-open .site-nav__toggle-icon span:last-child {
 }
 
 .project-info_excerpt {
-  margin: 0.65rem 0 0;
-  font-size: 0.88rem;
+  margin: 0.85rem 0 0;
+  font-size: 0.92rem;
   color: var(--text-muted);
   font-weight: 300;
-  line-height: 1.45;
+  line-height: 1.55;
+  max-width: 28ch;
+}
+
+@media (min-width: 576px) {
+  .project-info_excerpt { max-width: 32ch; }
+}
+
+/* ùmpar/par respeitam o alinhamento certo do excerto tambùm */
+@media (min-width: 576px) {
+  .project-list_item:nth-child(odd)  .project-info_excerpt { margin-left: auto; }
+  .project-list_item:nth-child(even) .project-info_excerpt { margin-right: auto; }
 }
 
 
 /* ========================================================================
- * Pùgina editorial: Projects intro + Footer + Back-to-top
+ * P?gina editorial: Projects intro + Footer + Back-to-top
  * ====================================================================== */
 
-/* Container principal ocupa 100vh mùnimo, fundo claro */
+/* Container principal ocupa 100vh m?nimo, fundo claro */
 .page-content--dinapita {
   position: relative;
   width: 100%;
@@ -654,7 +737,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   overflow-x: clip;
 }
 
-/* ùùù Projects intro (hero editorial) ùùù */
+/* ??? Projects intro (hero editorial) ??? */
 .projects-intro {
   position: relative;
   min-height: 100vh;
@@ -688,7 +771,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   padding-bottom: 3vw;
 }
 
-/* "Big letter" ù a enorme letra D que referencia a marca */
+/* "Big letter" ? a enorme letra D que referencia a marca */
 .big-letter {
   font-family: var(--font-display);
   font-weight: 700;
@@ -713,7 +796,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   }
 }
 
-/* Introduction (tùtulo "Projetos") */
+/* Introduction (t?tulo "Projetos") */
 .introduction {
   display: inline-block;
   position: relative;
@@ -736,7 +819,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   padding: 0;
 }
 
-/* Grid mùnimo para reproduzir as colunas da referùncia */
+/* Grid m?nimo para reproduzir as colunas da refer?ncia */
 .container-fluid {
   width: 100%;
   padding-right: 15px;
@@ -779,7 +862,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   .offset-xl-2 { margin-left: 16.6666%; }
 }
 
-/* ùùù Footer editorial ùùù */
+/* ??? Footer editorial ??? */
 .footer {
   position: relative;
   z-index: 10;
@@ -941,7 +1024,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   border-bottom-color: var(--light-blue);
 }
 
-/* ùùù Back to top (quadrado no canto) ùùù */
+/* ??? Back to top (quadrado no canto) ??? */
 .back-to-top {
   position: absolute;
   z-index: 25;
@@ -1021,7 +1104,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
 
 
 /* ============================================================
- * Logo como big-letter + Reveal + Showcase de vùdeo + Scroll cue
+ * Logo como big-letter + Reveal + Showcase de v?deo + Scroll cue
  * ========================================================== */
 
 /* Smooth-scroll global */
@@ -1054,11 +1137,11 @@ html {
 }
 
 .big-letter--inverted .big-letter__img {
-  /* versùo branca: caso a marca venha em preto, inverte */
+  /* vers?o branca: caso a marca venha em preto, inverte */
   filter: none;
 }
 
-/* Scroll cue na intro ù subtle pulse */
+/* Scroll cue na intro ? subtle pulse */
 .projects-intro__scroll-cue {
   position: absolute;
   bottom: 5vh;
@@ -1092,7 +1175,7 @@ html {
 }
 
 /* ============================================================
- * Reveal: estado inicial invisùvel, entra com translate + fade
+ * Reveal: estado inicial invis?vel, entra com translate + fade
  * ========================================================== */
 .reveal {
   opacity: 0;
@@ -1124,7 +1207,7 @@ html {
 }
 
 /* ============================================================
- * Showcase de vùdeo
+ * Showcase de v?deo
  * ========================================================== */
 .showcase {
   padding: clamp(5rem, 10vw, 9rem) max(var(--space-lg), 8.333vw);
@@ -1201,40 +1284,54 @@ html {
   will-change: transform;
 }
 
-/* Projetos: imagem com zoom-in quando revela */
+/* Cards de projeto: sù fade no <article> (sem translate) ù evita
+ * conflito com margin-top negativo e com o .project-info posicionado absoluto */
+.section--projects-list .project-list_item.reveal {
+  transform: none;
+  will-change: opacity;
+}
+
+/* Projetos: imagem sù fade (sem zoom/parallax ù evita "cinza" durante scroll) */
 .project-list_item .project-image_background {
-  transform: scale(1.08);
-  transition: transform 1.4s var(--ease), opacity 0.8s ease;
+  transition: opacity 0.8s ease;
   opacity: 0.001;
 }
 
-.project-list_item.is-visible .project-image_background {
-  transform: scale(1);
-  opacity: 1;
-}
+.project-list_item.is-visible .project-image_background { opacity: 1; }
 
+/* Texto aparece escalonado: data ? nome ? excerto */
+.project-list_item .project-info_date,
 .project-list_item .project-info_name,
-.project-list_item .project-info_date {
-  transform: translate3d(0, 12px, 0);
+.project-list_item .project-info_excerpt {
+  transform: translate3d(0, 16px, 0);
   opacity: 0;
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
 
-.project-list_item.is-visible .project-info_name,
 .project-list_item.is-visible .project-info_date {
   transform: none;
   opacity: 1;
-  transition-delay: 0.2s;
+  transition-delay: 0.15s;
 }
 
-.project-list_item.is-visible .project-info_name { transition-delay: 0.3s; }
+.project-list_item.is-visible .project-info_name {
+  transform: none;
+  opacity: 1;
+  transition-delay: 0.3s;
+}
 
-/* Footer: tùtulos de coluna animam como reveal */
+.project-list_item.is-visible .project-info_excerpt {
+  transform: none;
+  opacity: 1;
+  transition-delay: 0.45s;
+}
+
+/* Footer: t?tulos de coluna animam como reveal */
 .footer__info.reveal { transition-delay: 0.05s; }
 
 
 /* ============================================================
- * Intro com vùdeo de fundo (lado direito) + remoùùo do scroll cue
+ * Intro com v?deo de fundo (lado direito) + remo??o do scroll cue
  * ========================================================== */
 
 .projects-intro {
@@ -1261,7 +1358,7 @@ html {
   filter: saturate(0.95) contrast(1.02);
 }
 
-/* Em telas mùdias+, o vùdeo fica ancorado ù metade direita como painel editorial */
+/* Em telas m?dias+, o v?deo fica ancorado ? metade direita como painel editorial */
 @media (min-width: 900px) {
   .projects-intro__video {
     width: 48%;
@@ -1269,7 +1366,7 @@ html {
   }
 }
 
-/* Scrim gradiente que suaviza o texto sobre o vùdeo */
+/* Scrim gradiente que suaviza o texto sobre o v?deo */
 .projects-intro__scrim {
   position: absolute;
   inset: 0;
@@ -1294,21 +1391,21 @@ html {
   }
 }
 
-/* Garante que o conteùdo fique acima do vùdeo */
+/* Garante que o conte?do fique acima do v?deo */
 .projects-intro .page-content_wrapper,
 .projects-intro .page-content-wrapper {
   position: relative;
   z-index: 2;
 }
 
-/* Tùtulo continua legùvel sobre o scrim */
+/* T?tulo continua leg?vel sobre o scrim */
 .projects-intro .introduction { color: var(--text); }
 
-/* Esconde o scroll-cue (removido do template, mas mantùm o fallback) */
+/* Esconde o scroll-cue (removido do template, mas mant?m o fallback) */
 .projects-intro__scroll-cue { display: none !important; }
 
 /* ============================================================
- * Showcase agora usa imagem (placeholder aleatùrio)
+ * Showcase agora usa imagem (placeholder aleat?rio)
  * ========================================================== */
 
 .showcase__image {
@@ -1326,8 +1423,8 @@ html {
 
 
 /* ============================================================
- * Hero em vùdeo (projects-intro) ù ocupa o viewport e serve de
- * fundo para a letra-logo e o tùtulo "Projetos"
+ * Hero em v?deo (projects-intro) ? ocupa o viewport e serve de
+ * fundo para a letra-logo e o t?tulo "Projetos"
  * ========================================================== */
 .projects-intro {
   position: relative;
@@ -1386,7 +1483,7 @@ html {
   padding-bottom: clamp(3rem, 8vw, 6rem);
 }
 
-/* Big-letter / logo sobre o vùdeo ù versùo branca */
+/* Big-letter / logo sobre o v?deo ? vers?o branca */
 .big-letter--on-media .big-letter__img {
   filter: brightness(0) invert(1) drop-shadow(0 4px 24px rgba(0, 0, 0, 0.35));
 }
@@ -1395,19 +1492,19 @@ html {
   color: #fff;
 }
 
-/* Tùtulo "Projetos" sobre o vùdeo */
+/* T?tulo "Projetos" sobre o v?deo */
 .introduction--on-media {
   color: #fff;
   text-shadow: 0 4px 28px color-mix(in srgb, var(--text) 55%, transparent);
 }
 
-/* Reveal clip-path override para ficar branco tambùm */
+/* Reveal clip-path override para ficar branco tamb?m */
 .projects-intro .introduction.reveal.introduction--on-media {
   color: #fff;
 }
 
 /* ============================================================
- * Showcase agora apresenta uma imagem (placeholder) em vez de vùdeo
+ * Showcase agora apresenta uma imagem (placeholder) em vez de v?deo
  * ========================================================== */
 .showcase__image {
   width: 100%;
@@ -1418,8 +1515,8 @@ html {
 
 
 /* ============================================================
- * Ajustes pùs-header clean: hero em vùdeo passa atrùs do nav
- * e a intro recebe padding superior equivalente ù altura da barra
+ * Ajustes p?s-header clean: hero em v?deo passa atr?s do nav
+ * e a intro recebe padding superior equivalente ? altura da barra
  * ========================================================== */
 .projects-intro {
   padding-top: 0;
