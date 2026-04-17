@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+  <rect width="100%" height="100%" fill="#e5e8e2"/>
+  <rect x="0" y="0" width="100%" height="8" fill="#dad369"/>
+  <text x="50%" y="46%" fill="#252b26" font-family="system-ui,sans-serif" font-size="28" font-weight="600" text-anchor="middle">Projeto 4</text>
+  <text x="50%" y="52%" fill="#a8afa3" font-family="system-ui,sans-serif" font-size="16" text-anchor="middle">3:4</text>
+</svg>
