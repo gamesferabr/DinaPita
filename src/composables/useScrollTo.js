@@ -2,6 +2,8 @@ import { ref } from "vue";
 
 /**
  * Rolagem suave por id de seção e controle do menu mobile.
+ * Para alvos especiais (ex.: "contato") devolve true para que o caller decida
+ * abrir um modal em vez de rolar.
  */
 export function useScrollTo() {
   const menuOpen = ref(false);
