@@ -172,8 +172,21 @@ export const projetos = [
 export const contato = {
   telefone: "+55 (00) 00000-0000",
   email: "contato@dinapita.com",
+  /**
+   * Link do WhatsApp da agência (número internacional, sem + nem espaços).
+   * Trocar 5521999999999 pelo número real ao publicar.
+   */
+  whatsappUrl:
+    "https://wa.me/5521999999999?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20o%20escrit%C3%B3rio.",
+  whatsappHeadline: "Bora falar de projeto pelo WhatsApp?",
+  whatsappSub: "Manda uma mensagem — a gente responde em horário comercial.",
   endereco: ["Rua dos Arquitetos, 000", "São Paulo — SP, Brasil"],
   horario: "Seg–Sex · 9h às 18h",
+  /** Foto do local — mesma referência da vitrine (commit original) */
+  fotoLocalUrl:
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+  fotoLocalAlt: "Imagem de arquitetura — substituir por foto do cliente",
+  fotoLocalLegenda: "Imagem provisória — substituir",
   social: [
     { label: "Instagram", href: "https://instagram.com/" },
     { label: "Behance", href: "https://behance.net/" },

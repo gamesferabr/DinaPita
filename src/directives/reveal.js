@@ -12,6 +12,33 @@ const observers = new WeakMap();
 
 let sharedObserver = null;
 
+/**
+ * Garante que o browser pinta o estado `.reveal` antes de `.is-visible`,
+ * para as transições CSS correrem também no carregamento inicial da página.
+ */
+function scheduleRevealClass(el, delayMs) {
+  const apply = () => {
+    el.classList.add("is-visible");
+  };
+  if (typeof window === "undefined") {
+    apply();
+    return;
+  }
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    apply();
+    return;
+  }
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      if (delayMs > 0) {
+        window.setTimeout(apply, delayMs);
+      } else {
+        apply();
+      }
+    });
+  });
+}
+
 function getObserver() {
   if (sharedObserver) {
     return sharedObserver;
@@ -28,11 +55,9 @@ function getObserver() {
         const el = entry.target;
         const meta = observers.get(el);
         const delay = meta?.delay ?? 0;
-        window.setTimeout(() => {
-          el.classList.add("is-visible");
-        }, delay);
         sharedObserver.unobserve(el);
         observers.delete(el);
+        scheduleRevealClass(el, delay);
       }
     },
     { root: null, threshold: 0.16, rootMargin: "0px 0px -8% 0px" },
@@ -43,12 +68,12 @@ function getObserver() {
 export const revealDirective = {
   mounted(el, binding) {
     el.classList.add("reveal");
+    const delay = typeof binding.value === "object" ? binding.value.delay ?? 0 : 0;
     const observer = getObserver();
     if (!observer) {
-      el.classList.add("is-visible");
+      scheduleRevealClass(el, delay);
       return;
     }
-    const delay = typeof binding.value === "object" ? binding.value.delay ?? 0 : 0;
     observers.set(el, { delay });
     observer.observe(el);
   },

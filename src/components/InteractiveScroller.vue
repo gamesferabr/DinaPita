@@ -1,8 +1,8 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from "vue";
 
-defineProps({
-  /** true = trilho claro (quando o hero estiver escuro) */
+const props = defineProps({
+  /** true = trilho claro (hero escuro, rodapé escuro, etc.) */
   lightTrack: { type: Boolean, default: false },
 });
 
@@ -126,7 +126,7 @@ onUnmounted(() => {
     id="interactive-scroller"
     class="interactive-scroller"
     :class="{
-      'interactive-scroller--light': lightTrack,
+      'interactive-scroller--light': props.lightTrack,
       'interactive-scroller--active': active,
       'interactive-scroller--dragging': dragging,
     }"

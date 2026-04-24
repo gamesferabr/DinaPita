@@ -1,6 +1,4 @@
 <script setup>
-import BackToTop from "./BackToTop.vue";
-
 defineProps({
   ano: { type: Number, required: true },
   logoSrc: { type: String, required: true },
@@ -12,8 +10,6 @@ const emit = defineEmits(["scroll-to"]);
 
 <template>
   <footer class="footer" aria-label="Rodapé">
-    <BackToTop @click="emit('scroll-to', 'topo')" />
-
     <div class="footer__shape" aria-hidden="true" />
 
     <div class="footer__content container-fluid">
@@ -83,10 +79,10 @@ const emit = defineEmits(["scroll-to"]);
       <div class="row footer__second-line">
         <div class="offset-1 col-10 col-md-5 col-xl-4 footer__column">
           <div class="row footer__line">
-            <div class="footer__info footer__column col-md-6">
+            <div v-reveal="{ delay: 60 }" class="footer__info footer__column col-md-6">
               <div class="photos-copyright">Fotos © respectivos autores</div>
             </div>
-            <div class="footer__info footer__column col-md-6">
+            <div v-reveal="{ delay: 120 }" class="footer__info footer__column col-md-6">
               <ul class="footer__nav">
                 <li><a href="#" rel="nofollow">Política de privacidade</a></li>
               </ul>
@@ -96,7 +92,9 @@ const emit = defineEmits(["scroll-to"]);
         <div
           class="row footer__line offset-1 offset-md-0 offset-xl-2 col-12 col-md-3 col-xl-2"
         >
-          <div class="footer__info">© {{ ano }} — Dina Pita Arquitetura</div>
+          <div v-reveal="{ delay: 180 }" class="footer__info">
+            © {{ ano }} — Dina Pita Arquitetura
+          </div>
         </div>
       </div>
     </div>

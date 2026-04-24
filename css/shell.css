@@ -38,7 +38,7 @@ body.nav-open {
 .site-nav.site-nav--on-media {
   background: transparent;
   border-bottom-color: transparent;
-  color: #fff;
+  color: #000000;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
 }
 
@@ -279,7 +279,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
 }
 
 /* =========================================================================
- * Interactive scroller ù indicador de progresso discreto na lateral esquerda
+ * Interactive scroller ? indicador de progresso discreto na lateral esquerda
  * (linha + bolinha + label "SCROLL" na vertical)
  * ========================================================================= */
 .interactive-scroller {
@@ -331,7 +331,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   opacity: 0.7;
 }
 
-/* Pista clicùvel: 18px de ùrea de hit, mas a linha visùvel tem 1px */
+/* Pista clic?vel: 18px de ?rea de hit, mas a linha vis?vel tem 1px */
 .interactive-scroller__track {
   position: relative;
   width: 18px;
@@ -396,55 +396,9 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   color: #fff;
 }
 
-/* ??? Cursor decorativo ??? */
-.site-cursor {
-  display: none;
-}
-
-@media (min-width: 992px) {
-  .site-cursor {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 80;
-    width: 62px;
-    height: 62px;
-    margin-left: -31px;
-    margin-top: -31px;
-    border-radius: 50%;
-    background: var(--text);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.35s ease;
-  }
-
-  .site-cursor--visible {
-    opacity: 0.12;
-  }
-
-  .site-cursor__cross {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 17px;
-    height: 1px;
-    margin-left: -8px;
-    background: #fff;
-  }
-
-  .site-cursor__cross--a {
-    transform: rotate(-45deg);
-  }
-
-  .site-cursor__cross--b {
-    transform: rotate(45deg);
-  }
-}
-
 /* =========================================================================
  * Lista de projetos ? layout editorial inspirado no Rezo Zero:
- * itens em coluna com sobreposiù?o vertical, imagens alternando lados
+ * itens em coluna com sobreposi??o vertical, imagens alternando lados
  * e texto posicionado de forma absoluta junto ? linha central.
  * ========================================================================= */
 .section--projects-list {
@@ -470,7 +424,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   padding-bottom: 15vh;
 }
 
-/* Linha vertical central ? visùvel a partir de >=576px */
+/* Linha vertical central ? vis?vel a partir de >=576px */
 .project-line {
   position: absolute;
   top: 0;
@@ -507,8 +461,8 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   .project-list { padding-bottom: 15vw; }
 }
 
-/* Item ù 1 imagem por cartùo, com altura independente (evita imagens invadindo
- * o item vizinho). Sem sobreposiùùo vertical para clareza editorial. */
+/* Item ? 1 imagem por cart?o, com altura independente (evita imagens invadindo
+ * o item vizinho). Sem sobreposi??o vertical para clareza editorial. */
 .project-list_item {
   position: relative;
   display: block;
@@ -530,9 +484,9 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   display: inline-block;
 }
 
-/* Alternùncia ancorada ù linha central:
- *   ùmpar  ? imagem logo ù direita da linha; texto logo ù esquerda
- *   par    ? imagem logo ù esquerda da linha; texto logo ù direita
+/* Altern?ncia ancorada ? linha central:
+ *   ?mpar  ? imagem logo ? direita da linha; texto logo ? esquerda
+ *   par    ? imagem logo ? esquerda da linha; texto logo ? direita
  */
 /* Grid 2 colunas: imagem e texto lado a lado, alinhados pelo topo */
 @media (min-width: 576px) {
@@ -565,7 +519,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   }
 }
 
-/* Link que envolve a imagem ù cartùo real com proporùùo estùvel */
+/* Link que envolve a imagem ? cart?o real com propor??o est?vel */
 .project-image-link,
 .project-image-link.project {
   position: relative;
@@ -594,7 +548,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   }
 }
 
-/* Caixa interna da imagem ù preenche o link sem vazar */
+/* Caixa interna da imagem ? preenche o link sem vazar */
 .project-image {
   position: absolute;
   inset: 0;
@@ -627,7 +581,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   display: block;
 }
 
-/* Bloco de info ù mobile: abaixo da imagem; desktop: absoluto ao lado oposto */
+/* Bloco de info ? mobile: abaixo da imagem; desktop: absoluto ao lado oposto */
 .project-info {
   position: relative;
   z-index: 2;
@@ -712,7 +666,7 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   .project-info_excerpt { max-width: 32ch; }
 }
 
-/* ùmpar/par respeitam o alinhamento certo do excerto tambùm */
+/* ?mpar/par respeitam o alinhamento certo do excerto tamb?m */
 @media (min-width: 576px) {
   .project-list_item:nth-child(odd)  .project-info_excerpt { margin-left: auto; }
   .project-list_item:nth-child(even) .project-info_excerpt { margin-right: auto; }
@@ -890,6 +844,19 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   pointer-events: none;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .footer__shape {
+    opacity: 0;
+    animation: footerShapeIn 1.15s var(--ease) 0.12s forwards;
+  }
+}
+
+@keyframes footerShapeIn {
+  to {
+    opacity: 0.9;
+  }
+}
+
 @media (min-width: 768px) {
   .footer__shape {
     left: 37.5%;
@@ -1023,85 +990,6 @@ body.nav-open .site-nav__toggle-icon span:last-child {
   color: var(--light-blue);
   border-bottom-color: var(--light-blue);
 }
-
-/* ??? Back to top (quadrado no canto) ??? */
-.back-to-top {
-  position: absolute;
-  z-index: 25;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100px;
-  background: transparent;
-  border: 0;
-  color: #fff;
-  cursor: pointer;
-  padding: 0;
-}
-
-@media (min-width: 768px) {
-  .back-to-top {
-    width: 16.66667%;
-    height: 160px;
-  }
-}
-
-.back-to-top__el {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 32px;
-  height: 32px;
-  transform: translate(-50%, -50%);
-  padding-top: 4px;
-  display: block;
-}
-
-.back-to-top__el-top,
-.back-to-top__el-bottom {
-  position: absolute;
-  background: currentColor;
-  display: block;
-}
-
-.back-to-top__el-top {
-  height: 2px;
-  width: 16px;
-  transform: scaleX(0.5);
-  transition: transform 0.4s var(--ease);
-}
-
-.back-to-top__el-top-left {
-  right: 50%;
-  transform-origin: 100% 100%;
-}
-
-.back-to-top__el-top-right {
-  left: 50%;
-  transform-origin: 0% 0%;
-}
-
-.back-to-top__el-bottom {
-  height: 16px;
-  width: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  transform-origin: 50% 100%;
-  transition: transform 0.4s var(--ease);
-}
-
-.back-to-top:hover .back-to-top__el-top-left {
-  transform: rotate(-45deg) scaleX(0.85);
-}
-
-.back-to-top:hover .back-to-top__el-top-right {
-  transform: rotate(45deg) scaleX(0.85);
-}
-
-.back-to-top:hover .back-to-top__el-bottom {
-  transform: translateX(-50%) scaleY(0);
-}
-
 
 /* ============================================================
  * Logo como big-letter + Reveal + Showcase de v?deo + Scroll cue
@@ -1284,14 +1172,14 @@ html {
   will-change: transform;
 }
 
-/* Cards de projeto: sù fade no <article> (sem translate) ù evita
+/* Cards de projeto: s? fade no <article> (sem translate) ? evita
  * conflito com margin-top negativo e com o .project-info posicionado absoluto */
 .section--projects-list .project-list_item.reveal {
   transform: none;
   will-change: opacity;
 }
 
-/* Projetos: imagem sù fade (sem zoom/parallax ù evita "cinza" durante scroll) */
+/* Projetos: imagem s? fade (sem zoom/parallax ? evita "cinza" durante scroll) */
 .project-list_item .project-image_background {
   transition: opacity 0.8s ease;
   opacity: 0.001;
@@ -1347,23 +1235,177 @@ html {
   overflow: hidden;
 }
 
-.projects-intro__video {
+/* Painel CTA WhatsApp (substitui o v?deo) */
+.projects-intro__whatsapp-slab {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(0.95) contrast(1.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2.25rem);
+  z-index: 0;
+  pointer-events: auto;
+  box-sizing: border-box;
 }
 
-/* Em telas m?dias+, o v?deo fica ancorado ? metade direita como painel editorial */
 @media (min-width: 900px) {
-  .projects-intro__video {
+  .projects-intro__whatsapp-slab {
     width: 48%;
     left: auto;
   }
+}
+
+.whatsapp-slab__pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--text) 88%, #0a1628) 0%, color-mix(in srgb, var(--text) 55%, #1a2e28) 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 11px,
+      color-mix(in srgb, #fff 4%, transparent) 11px,
+      color-mix(in srgb, #fff 4%, transparent) 12px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 11px,
+      color-mix(in srgb, #fff 3%, transparent) 11px,
+      color-mix(in srgb, #fff 3%, transparent) 12px
+    );
+  background-blend-mode: normal, normal, normal;
+  animation: whatsappSlabDrift 28s ease-in-out infinite;
+}
+
+@keyframes whatsappSlabDrift {
+  0%,
+  100% {
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  50% {
+    filter: hue-rotate(-4deg) brightness(1.03);
+  }
+}
+
+.whatsapp-slab__bubbles,
+.whatsapp-slab__copy {
+  position: relative;
+  z-index: 1;
+}
+
+.whatsapp-slab__bubbles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.15rem;
+  max-width: 20rem;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.whatsapp-slab__bubble {
+  margin: 0;
+  padding: 0.55rem 0.7rem 0.6rem;
+  border-radius: 10px 10px 2px 10px;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: #fff;
+  max-width: 19rem;
+  text-shadow: 0 1px 0 color-mix(in srgb, var(--text) 20%, transparent);
+  animation: whatsappBubble 5s ease-in-out infinite;
+}
+
+.whatsapp-slab__bubble--in {
+  background: color-mix(in srgb, #25d366 32%, #fff 8%);
+  align-self: flex-end;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  animation-delay: 0s;
+}
+
+.whatsapp-slab__bubble--out {
+  background: color-mix(in srgb, #fff 14%, transparent);
+  align-self: flex-end;
+  border: 1px solid color-mix(in srgb, #fff 22%, transparent);
+  animation-delay: 0.8s;
+}
+
+@keyframes whatsappBubble {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.whatsapp-slab__copy {
+  text-align: left;
+}
+
+.whatsapp-slab__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: color-mix(in srgb, #fff 50%, var(--ash));
+  font-weight: 500;
+}
+
+.whatsapp-slab__headline {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.1vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+}
+
+.whatsapp-slab__sub {
+  margin: 0 0 1.1rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, #fff 70%, var(--ash));
+  font-weight: 300;
+  max-width: 20rem;
+}
+
+.whatsapp-slab__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem 0.65rem 0.85rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, #25d366 90%, #fff 10%);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.whatsapp-slab__btn:hover {
+  transform: translateY(-1px);
+  background: #25d366;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+  color: #fff;
+}
+
+.whatsapp-slab__btn-icon {
+  display: flex;
+  flex-shrink: 0;
 }
 
 /* Scrim gradiente que suaviza o texto sobre o v?deo */
@@ -1444,17 +1486,11 @@ html {
   pointer-events: none;
 }
 
-.projects-intro__video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: saturate(1.02) contrast(1.03);
-}
-
 .projects-intro__overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
+  pointer-events: none;
   background:
     linear-gradient(180deg,
       color-mix(in srgb, var(--text) 18%, transparent) 0%,
@@ -1543,7 +1579,7 @@ html {
 
 
 /* =========================================================================
- * Modais (projeto + contato) ù overlay full-screen com painel deslizante
+ * Modais (projeto + contato) ? overlay full-screen com painel deslizante
  * ========================================================================= */
 body.modal-open {
   overflow: hidden;
@@ -1630,14 +1666,14 @@ body.modal-open {
   font-size: 0.92rem;
 }
 
-/* Conjunto de aùùes no canto direito da barra do modal */
+/* Conjunto de a??es no canto direito da barra do modal */
 .modal__actions {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* Pùlula reutilizùvel (action = link "abrir em nova aba", close = X) */
+/* P?lula reutiliz?vel (action = link "abrir em nova aba", close = X) */
 .modal__action,
 .modal__close {
   appearance: none;
@@ -1716,7 +1752,7 @@ body.modal-open {
   .modal__close-label { display: none; }
 }
 
-/* Conteùdo interno scrollùvel */
+/* Conte?do interno scroll?vel */
 .modal__scroll {
   flex: 1;
   overflow-y: auto;
@@ -1731,7 +1767,7 @@ body.modal-open {
   border-radius: 3px;
 }
 
-/* ?? Pùgina de projeto (dentro do modal) ?? */
+/* ?? P?gina de projeto (dentro do modal) ?? */
 .project-page__hero {
   padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem) 0;
   max-width: 800px;
@@ -2031,7 +2067,7 @@ body.modal-open {
   flex-wrap: wrap;
 }
 
-/* Animaùùo de entrada/saùda do modal */
+/* Anima??o de entrada/sa?da do modal */
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.35s var(--ease);
@@ -2358,7 +2394,7 @@ body.modal-open {
 
 .project-fullscreen__strip-name { font-size: 0.92rem; }
 
-/* Transiùùo de slide ao trocar de projeto */
+/* Transi??o de slide ao trocar de projeto */
 .fs-slide--right-enter-active,
 .fs-slide--right-leave-active,
 .fs-slide--left-enter-active,

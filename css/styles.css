@@ -1,41 +1,8 @@
 /*
  * Paleta: Ash Gray #A8AFA3, Light Blue #3BD6D8, #DAD369
- * Tipografia: Atyp Grotesk (Atipo) — copie os .woff2 para a pasta fonts/ com estes nomes:
- *   AtypGrotesk-Light.woff2, AtypGrotesk-Regular.woff2, AtypGrotesk-Medium.woff2, AtypGrotesk-Bold.woff2
- * Se o ZIP usar outro padrão, renomeie ou ajuste as URLs nos @font-face abaixo.
+ * Tipografia: Space Grotesk (Google Fonts) — licença SIL Open Font License 1.1,
+ * uso comercial e web sem custo. Carregada em index.html.
  */
-
-@font-face {
-  font-family: "Atyp Grotesk";
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: local("Atyp Grotesk Light"), url("../fonts/AtypGrotesk-Light.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Atyp Grotesk";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local("Atyp Grotesk Regular"), url("../fonts/AtypGrotesk-Regular.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Atyp Grotesk";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: local("Atyp Grotesk Medium"), url("../fonts/AtypGrotesk-Medium.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Atyp Grotesk";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: local("Atyp Grotesk Bold"), url("../fonts/AtypGrotesk-Bold.woff2") format("woff2");
-}
 
 :root {
   --ash: #a8afa3;
@@ -48,8 +15,8 @@
   --accent: var(--light-blue);
   --accent-secondary: var(--lime);
   --line: color-mix(in srgb, var(--ash) 45%, transparent);
-  --font-sans: "Atyp Grotesk", "Segoe UI", system-ui, sans-serif;
-  --font-display: "Atyp Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.75rem;

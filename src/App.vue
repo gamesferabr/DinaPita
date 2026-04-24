@@ -8,9 +8,9 @@ import { useParallax } from "./composables/useParallax.js";
 import { useUrlModal } from "./composables/useUrlModal.js";
 import SiteShellNav from "./components/SiteShellNav.vue";
 import InteractiveScroller from "./components/InteractiveScroller.vue";
-import SiteCursor from "./components/SiteCursor.vue";
 import ProjectsIntroSection from "./components/ProjectsIntroSection.vue";
 import ShowcaseVideoSection from "./components/ShowcaseVideoSection.vue";
+import LocationSection from "./components/LocationSection.vue";
 import ProjectsSection from "./components/ProjectsSection.vue";
 import SiteFooter from "./components/SiteFooter.vue";
 import ProjectModal from "./components/ProjectModal.vue";
@@ -75,7 +75,6 @@ watch(menuOpen, (open) => {
     />
 
     <InteractiveScroller v-if="!fullscreen" :light-track="isOverDark" />
-    <SiteCursor v-if="!fullscreen" />
 
     <main id="main-container" class="scroll-container" aria-live="polite">
       <div
@@ -86,11 +85,8 @@ watch(menuOpen, (open) => {
         <div class="page-content_inner">
           <div id="scroll" class="o-scroll">
             <div class="scroll-content">
-              <ProjectsIntroSection
-                :logo-src="brand.logoPreto"
-                @scroll-to="scrollTo"
-              />
               <ShowcaseVideoSection />
+              <LocationSection />
               <ProjectsSection
                 :projects="projetos"
                 @go="go"
