@@ -5,8 +5,8 @@ import { contato } from "../data/siteContent.js";
 const props = defineProps({
   /** Link do WhatsApp (com mensagem pré-preenchida). Fallback para `siteContent`. */
   whatsappHref: { type: String, default: contato.whatsappUrl },
-  /** Texto do CTA gigante. */
-  ctaLabel: { type: String, default: "Vamos conversar?" },
+  /** Rótulo do botão de WhatsApp (coluna de texto). */
+  whatsappButtonLabel: { type: String, default: "WhatsApp" },
   /**
    * Mensagens encenadas no “telemóvel” — aparecem com delay progressivo,
    * simulando uma conversa real antes do CTA final.
@@ -95,25 +95,27 @@ function bubbleDelay(i) {
           Projeto começa com
           <em>uma boa conversa</em>.
         </h2>
+        <a
+          class="wa-showcase__wh-btn"
+          :href="whatsappHref"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="`${whatsappButtonLabel}. Abre o WhatsApp numa nova janela.`"
+        >
+          <span class="wa-showcase__wh-btn-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none" width="20" height="20">
+              <path
+                d="M16 3C8.82 3 3 8.82 3 16c0 2.29.6 4.45 1.64 6.32L3 29l6.88-1.81A12.93 12.93 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3Zm7.21 17.94c-.3.85-1.73 1.63-2.42 1.73-.62.09-1.41.13-2.28-.14-.52-.16-1.2-.38-2.06-.76-3.63-1.58-5.99-5.31-6.17-5.55-.18-.24-1.47-1.96-1.47-3.74 0-1.78.93-2.65 1.27-3.01.34-.36.73-.45.97-.45.24 0 .49.0.7.01.22.01.52-.08.82.62.3.7 1.02 2.48 1.11 2.66.09.18.15.4.03.64-.12.24-.18.4-.36.62-.18.22-.38.49-.54.66-.18.18-.37.38-.16.74.2.36.91 1.5 1.95 2.43 1.34 1.19 2.47 1.56 2.83 1.74.36.18.57.15.79-.09.22-.24.91-1.06 1.15-1.43.24-.36.48-.3.82-.18.34.12 2.14 1.01 2.51 1.2.36.18.6.27.7.42.09.15.09.85-.22 1.69Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          {{ whatsappButtonLabel }}
+        </a>
         <p class="wa-showcase__lead">
           Manda uma mensagem no WhatsApp. A Dina responde pessoalmente —
           sem formulário, sem robô, sem follow-up automático.
         </p>
-
-        <ul class="wa-showcase__facts" aria-label="Como funciona">
-          <li>
-            <span class="wa-showcase__fact-num">01</span>
-            <span>Conta em 2 linhas o que tens em mente.</span>
-          </li>
-          <li>
-            <span class="wa-showcase__fact-num">02</span>
-            <span>Combinamos uma call de 20 min (grátis).</span>
-          </li>
-          <li>
-            <span class="wa-showcase__fact-num">03</span>
-            <span>Se fizer sentido, seguimos para proposta.</span>
-          </li>
-        </ul>
       </div>
 
       <!-- “Telemóvel” com conversa a decorrer -->
@@ -165,37 +167,6 @@ function bubbleDelay(i) {
         </div>
       </div>
     </div>
-
-    <!-- CTA gigante inspirado em lusion / awwwards -->
-    <a
-      class="wa-cta"
-      :href="whatsappHref"
-      target="_blank"
-      rel="noopener"
-      :aria-label="`${ctaLabel} Abre uma nova conversa no WhatsApp.`"
-    >
-      <span class="wa-cta__line">
-        <span class="wa-cta__word" data-text="Vamos">Vamos</span>
-        <span class="wa-cta__word wa-cta__word--accent" data-text="conversar?">
-          conversar?
-        </span>
-      </span>
-
-      <span class="wa-cta__meta">
-        <span class="wa-cta__icon" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="none" width="28" height="28">
-            <path
-              d="M16 3C8.82 3 3 8.82 3 16c0 2.29.6 4.45 1.64 6.32L3 29l6.88-1.81A12.93 12.93 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3Zm7.21 17.94c-.3.85-1.73 1.63-2.42 1.73-.62.09-1.41.13-2.28-.14-.52-.16-1.2-.38-2.06-.76-3.63-1.58-5.99-5.31-6.17-5.55-.18-.24-1.47-1.96-1.47-3.74 0-1.78.93-2.65 1.27-3.01.34-.36.73-.45.97-.45.24 0 .49.0.7.01.22.01.52-.08.82.62.3.7 1.02 2.48 1.11 2.66.09.18.15.4.03.64-.12.24-.18.4-.36.62-.18.22-.38.49-.54.66-.18.18-.37.38-.16.74.2.36.91 1.5 1.95 2.43 1.34 1.19 2.47 1.56 2.83 1.74.36.18.57.15.79-.09.22-.24.91-1.06 1.15-1.43.24-.36.48-.3.82-.18.34.12 2.14 1.01 2.51 1.2.36.18.6.27.7.42.09.15.09.85-.22 1.69Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-        <span class="wa-cta__sub">
-          <small>WhatsApp · resposta em horário comercial</small>
-          <strong>{{ ctaLabel }}</strong>
-        </span>
-      </span>
-    </a>
   </section>
 </template>
 
@@ -258,49 +229,66 @@ function bubbleDelay(i) {
   color: var(--wa-green-ink);
 }
 
+.wa-showcase__wh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.25rem;
+  padding: 0.65rem 1.1rem 0.65rem 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: #fff;
+  background: var(--wa-green);
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--wa-green) 45%, transparent);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  width: max-content;
+}
+
+.wa-showcase__wh-btn:hover,
+.wa-showcase__wh-btn:focus-visible {
+  background: color-mix(in srgb, var(--wa-green) 88%, #000);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--wa-green) 50%, transparent);
+  outline: none;
+}
+
+.wa-showcase__wh-btn-icon {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--wa-green-ink);
+}
+
 .wa-showcase__lead {
   font-size: clamp(1rem, 1.2vw, 1.12rem);
   line-height: 1.6;
   max-width: 42ch;
-  color: var(--text);
-  margin: 0 0 2rem;
-}
-
-.wa-showcase__facts {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 0.75rem;
-}
-
-.wa-showcase__facts li {
-  display: grid;
-  grid-template-columns: 2.25rem 1fr;
-  align-items: baseline;
-  gap: 0.75rem;
-  padding: 0.5rem 0;
-  border-top: 1px solid color-mix(in srgb, var(--ash) 55%, transparent);
-}
-
-.wa-showcase__facts li:last-child {
-  border-bottom: 1px solid color-mix(in srgb, var(--ash) 55%, transparent);
-}
-
-.wa-showcase__fact-num {
-  font-family: var(--font-display);
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  color: var(--text-muted);
+  color: var(--text); 
+  margin: 0 0 1.25rem;
 }
 
 /* ============================================================
  * Phone mock — lado direito
+ * Escondido abaixo de 900px (alinhado com a grelha a 2 colunas).
  * ========================================================== */
 .wa-showcase__phone-wrap {
-  display: flex;
-  justify-content: center;
-  perspective: 1200px;
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .wa-showcase__phone-wrap {
+    display: flex;
+    justify-content: center;
+    perspective: 1200px;
+  }
 }
 
 .wa-showcase__phone {
@@ -335,9 +323,11 @@ function bubbleDelay(i) {
   height: 22px;
   background: #0b1414;
   border-radius: 0 0 18px 18px;
-  z-index: 3;
+  z-index: 2;
+  pointer-events: none;
 }
 
+/* Padding-top afinado: o “ilha”/notch não pode cobrir o nome (estava a sobrepor a coluna central) */
 .wa-showcase__phone-topbar {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -345,7 +335,7 @@ function bubbleDelay(i) {
   gap: 0.8rem;
   background: var(--wa-green-ink);
   color: #fff;
-  padding: 0.9rem 0.9rem 0.8rem;
+  padding: 2.1rem 0.9rem 0.7rem;
   border-radius: 30px 30px 0 0;
   position: relative;
   z-index: 1;
@@ -364,17 +354,31 @@ function bubbleDelay(i) {
   font-size: 1rem;
 }
 
+.wa-showcase__phone-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.06rem;
+  line-height: 1.12;
+  min-width: 0;
+}
+
 .wa-showcase__phone-meta strong {
   display: block;
   font-size: 0.88rem;
   font-weight: 500;
   letter-spacing: 0.01em;
+  margin: 0;
+  line-height: 1.15;
 }
 
 .wa-showcase__phone-meta small {
   display: block;
   font-size: 0.7rem;
   opacity: 0.75;
+  margin: 0;
+  line-height: 1.1;
 }
 
 .wa-showcase__phone-call {
@@ -392,7 +396,7 @@ function bubbleDelay(i) {
 
 .wa-showcase__phone-feed {
   position: relative;
-  height: calc(100% - 66px);
+  height: calc(100% - 5.25rem);
   background: var(--wa-paper);
   background-image:
     radial-gradient(
@@ -495,111 +499,6 @@ function bubbleDelay(i) {
   }
 }
 
-/* ============================================================
- * CTA gigante — inspirado em lusion / awwwards
- * ========================================================== */
-.wa-cta {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  margin-top: clamp(3rem, 6vw, 5rem);
-  padding: clamp(1.5rem, 3vw, 2.2rem) 0 0;
-  border-top: 1px solid color-mix(in srgb, var(--ash) 45%, transparent);
-  color: var(--text);
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.wa-cta__line {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4em 0.55em;
-  align-items: baseline;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(3rem, 9vw, 7.2rem);
-  line-height: 0.92;
-  letter-spacing: -0.035em;
-}
-
-.wa-cta__word {
-  position: relative;
-  display: inline-block;
-  overflow: hidden ;
-  transition: color 0.35s var(--ease);
-}
-
-.wa-cta__word::after {
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  color: var(--wa-green);
-  transform: translateY(102%);
-  transition: transform 0.55s var(--ease);
-}
-
-.wa-cta:hover .wa-cta__word,
-.wa-cta:focus-visible .wa-cta__word {
-  color: color-mix(in srgb, var(--text) 35%, transparent);
-}
-
-.wa-cta:hover .wa-cta__word::after,
-.wa-cta:focus-visible .wa-cta__word::after {
-  transform: translateY(0);
-}
-
-.wa-cta__word--accent {
-  font-style: italic;
-  font-weight: 500;
-  width: 60%;
-}
-
-.wa-cta__meta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9rem;
-  align-self: flex-start;
-  padding: 0.65rem 1.1rem 0.65rem 0.75rem;
-  border-radius: 999px;
-  background: var(--wa-green);
-  color: #062918;
-  transition: transform 0.35s var(--ease);
-}
-
-.wa-cta:hover .wa-cta__meta,
-.wa-cta:focus-visible .wa-cta__meta {
-  transform: translateX(6px);
-}
-
-.wa-cta__icon {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #fff;
-  color: var(--wa-green-ink);
-}
-
-.wa-cta__sub {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
-}
-
-.wa-cta__sub small {
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
-
-.wa-cta__sub strong {
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-}
-
 /* Reduced motion: tudo aparece de uma vez, sem tilt/typing */
 .wa-showcase.is-reduced .wa-showcase__phone {
   transform: none;
@@ -615,9 +514,5 @@ function bubbleDelay(i) {
 .wa-showcase.is-reduced .wa-showcase__dot {
   animation: none;
   opacity: 0.6;
-}
-
-.wa-showcase.is-reduced .wa-cta__word::after {
-  transition: none;
 }
 </style>
