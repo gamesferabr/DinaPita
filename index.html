@@ -9,6 +9,24 @@
       content="Escritório de arquitetura — substitua por texto do cliente."
     />
     <link rel="icon" href="/assets/logo-dina-preto.png" type="image/png" />
+    <script type="text/javascript">
+      (function (locationRef) {
+        if (locationRef.search[1] === "/") {
+          var decoded = locationRef.search
+            .slice(1)
+            .split("&")
+            .map(function (segment) {
+              return segment.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            locationRef.pathname.slice(0, -1) + decoded + locationRef.hash
+          );
+        }
+      })(window.location);
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

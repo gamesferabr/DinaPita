@@ -1,5 +1,6 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { withBasePath } from "../utils/basePath.js";
 
 const props = defineProps({
   project: { type: Object, required: true },
@@ -95,7 +96,7 @@ const slideClass = computed(() =>
     <header class="project-fullscreen__topbar">
       <a
         class="project-fullscreen__brand"
-        href="/"
+        :href="withBasePath('/')"
         aria-label="Voltar à página inicial"
         @click.prevent="onClose"
       >
@@ -112,7 +113,7 @@ const slideClass = computed(() =>
       <div class="project-fullscreen__topbar-actions">
         <a
           class="modal__action"
-          href="/"
+          :href="withBasePath('/')"
           aria-label="Voltar ao site"
           @click.prevent="onClose"
         >

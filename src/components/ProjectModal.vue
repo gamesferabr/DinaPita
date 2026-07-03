@@ -1,5 +1,6 @@
 <script setup>
 import { computed, watch } from "vue";
+import { withBasePath } from "../utils/basePath.js";
 
 const props = defineProps({
   project: { type: Object, default: null },
@@ -43,7 +44,7 @@ function onClose() {
           <div class="modal__actions">
             <a
               class="modal__action"
-              :href="`/projetos/${project.slug}`"
+              :href="withBasePath(`/projetos/${project.slug}`)"
               target="_blank"
               rel="noopener"
               aria-label="Abrir este projeto numa nova aba"
@@ -135,7 +136,7 @@ function onClose() {
 
           <footer class="project-page__cta">
             <p>Quer ver este projeto na íntegra ou conversar sobre o seu?</p>
-            <a class="text-link" href="/contato" @click.prevent="emit('close', { open: 'contato' })">
+            <a class="text-link" :href="withBasePath('/contato')" @click.prevent="emit('close', { open: 'contato' })">
               Falar com o escritório
             </a>
           </footer>

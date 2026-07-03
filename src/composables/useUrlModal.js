@@ -1,4 +1,5 @@
 import { onMounted, onUnmounted, ref } from "vue";
+import { stripBasePath, withBasePath } from "../utils/basePath.js";
 
 /**
  * Sincroniza o estado de modais com a barra de endereço usando History API.
@@ -26,7 +27,7 @@ export function useUrlModal(projetos) {
   }
 
   function syncFromUrl({ initial = false } = {}) {
-    const path = window.location.pathname;
+    const path = stripBasePath(window.location.pathname);
     if (/^\/contato/.test(path)) {
       openProject.value = null;
       contactOpen.value = true;
@@ -50,13 +51,14 @@ export function useUrlModal(projetos) {
   }
 
   function pushUrl(url, replace = false) {
-    if (window.location.pathname + window.location.search === url) {
+    const fullUrl = withBasePath(url);
+    if (window.location.pathname + window.location.search === fullUrl) {
       return;
     }
     if (replace) {
-      window.history.replaceState({}, "", url);
+      window.history.replaceState({}, "", fullUrl);
     } else {
-      window.history.pushState({}, "", url);
+      window.history.pushState({}, "", fullUrl);
     }
   }
 

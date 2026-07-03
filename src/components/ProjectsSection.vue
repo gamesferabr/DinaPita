@@ -1,4 +1,6 @@
 <script setup>
+import { withBasePath } from "../utils/basePath.js";
+
 defineProps({
   projects: { type: Array, required: true },
 });
@@ -48,7 +50,7 @@ function onCardClick(event, project) {
         >
           <a
             class="project-image-link project"
-            :href="p.href"
+            :href="withBasePath(p.href)"
             @click="onCardClick($event, p)"
             @auxclick.stop
           >
@@ -75,7 +77,7 @@ function onCardClick(event, project) {
           <div class="project-info">
             <a
               class="project-info_wrapper"
-              :href="p.href"
+              :href="withBasePath(p.href)"
               @click="onCardClick($event, p)"
             >
               <div class="project-info_date overtitle">{{ p.tipo }}</div>
