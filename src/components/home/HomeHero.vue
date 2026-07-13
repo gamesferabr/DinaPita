@@ -27,11 +27,11 @@ const emit = defineEmits(["cta", "ver-projetos", "diagnostico"]);
         </button>
 
         <div class="gm-hero__actions">
-          <button type="button" class="gm-btn gm-btn--ink" @click="emit('diagnostico')">
-            {{ hero.ctaDiagnostico }}
-          </button>
-          <button type="button" class="gm-btn gm-btn--ghost" @click="emit('cta')">
+          <button type="button" class="gm-btn gm-btn--ink" @click="emit('cta')">
             {{ hero.ctaPrimario }}
+          </button>
+          <button type="button" class="gm-btn gm-btn--ghost" @click="emit('diagnostico')">
+            {{ hero.ctaDiagnostico }}
           </button>
           <button type="button" class="gm-btn gm-btn--ghost" @click="emit('ver-projetos')">
             {{ hero.ctaSecundario }}
