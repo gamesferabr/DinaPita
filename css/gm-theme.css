@@ -361,6 +361,46 @@ body {
   margin: 0 0 1.6rem;
 }
 
+.gm-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fbf7f0;
+  background: rgba(251, 247, 240, 0.14);
+  border: 1px solid rgba(251, 247, 240, 0.35);
+  border-radius: 999px;
+  padding: 0.5rem 1.05rem;
+  margin: 0 0 1.4rem;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s var(--gm-ease), transform 0.2s var(--gm-ease);
+}
+
+.gm-hero__badge:hover {
+  background: rgba(251, 247, 240, 0.24);
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.gm-hero__badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: #4ade80;
+  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.25);
+}
+
+.gm-hero__badge-arrow {
+  transition: transform 0.2s var(--gm-ease);
+}
+
+.gm-hero__badge:hover .gm-hero__badge-arrow {
+  transform: translateX(3px);
+}
+
 .gm-hero__actions {
   display: flex;
   flex-wrap: wrap;

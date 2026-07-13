@@ -68,6 +68,7 @@ function onProjectModalClose(payload) {
           :hero="home.hero"
           @cta="openContactModal"
           @ver-projetos="scrollToId('projetos')"
+          @diagnostico="scrollToId('diagnostico')"
         />
         <HomeMarquee :items="home.marquee" />
         <HomeIntro :statement="home.statement" />

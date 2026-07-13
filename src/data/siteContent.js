@@ -217,6 +217,8 @@ export const home = {
     imagem:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80",
     imagemAlt: "Interior de arquitetura contemporânea — substituir por foto do escritório",
+    badge: "Diagnóstico de estilo · grátis, 2 minutos",
+    ctaDiagnostico: "Descubra seu estilo",
     ctaPrimario: "Fale comigo",
     ctaSecundario: "Ver projetos",
   },
