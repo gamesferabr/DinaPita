@@ -1,11 +1,14 @@
 <script setup>
 import { projetos, servicos, contato, brand, home } from "./data/siteContent.js";
 import { useUrlModal } from "./composables/useUrlModal.js";
+import { withBasePath } from "./utils/basePath.js";
+import diagnostico from "./data/diagnostico.json";
 import HomeNav from "./components/home/HomeNav.vue";
 import HomeHero from "./components/home/HomeHero.vue";
 import HomeMarquee from "./components/home/HomeMarquee.vue";
 import HomeIntro from "./components/home/HomeIntro.vue";
 import HomeServices from "./components/home/HomeServices.vue";
+import HomeQuiz from "./components/home/HomeQuiz.vue";
 import HomeCases from "./components/home/HomeCases.vue";
 import HomeServicesList from "./components/home/HomeServicesList.vue";
 import HomeCta from "./components/home/HomeCta.vue";
@@ -54,6 +57,7 @@ function onProjectModalClose(payload) {
       <HomeNav
         :items="home.nav"
         :monograma="brand.monograma"
+        :logo-src="withBasePath(brand.logoPreto)"
         :cta-label="home.hero.ctaPrimario"
         @nav="onNav"
         @cta="openContactModal"
@@ -69,6 +73,7 @@ function onProjectModalClose(payload) {
         <HomeIntro :statement="home.statement" />
         <HomeServices :cards="home.serviceCards" />
         <HomeCases :projects="projetos" @open-project="openProjectModal" />
+        <HomeQuiz :data="diagnostico" />
         <HomeServicesList :servicos="servicos" />
         <HomeCta
           :cta="home.cta"

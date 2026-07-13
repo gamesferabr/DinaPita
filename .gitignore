@@ -2,3 +2,6 @@ node_modules
 dist
 .DS_Store
 *.local
+
+# Ficheiro de trabalho local — a fonte usada pelo site é src/data/diagnostico.json
+perguntas_diagnostico.json

@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "titulo": "Descubra Qual Melhor Estilo de Projeto Combina Mais com Você",
+    "subtitulo": "Responda 8 perguntas e descubra o estilo de interiores que mais combina com sua personalidade — com dicas reais e referências que vão te inspirar.",
+    "nota": "Gratuito · 2 minutos · Resultado imediato",
+    "whatsapp": "+5513991305208"
+  },
+  "perguntas": [
+    {
+      "id": "q1",
+      "pergunta": "É sábado à tarde. Qual cenário te faz suspirar de satisfação?",
+      "opcoes": [
+        { "emoji": "🍷", "texto": "Sofá, luz baixa, vinho e aquela trilha sonora que você ama", "estilo": "classico" },
+        { "emoji": "☀️", "texto": "Sol entrando pela janela, café fresco e plantas ao redor", "estilo": "escandinavo" },
+        { "emoji": "🎸", "texto": "Música alta, mesa grande de madeira bruta e cerveja gelada", "estilo": "industrial" },
+        { "emoji": "📖", "texto": "Lendo um livro de design num espaço que parece editorial", "estilo": "contemporaneo" },
+        { "emoji": "🧘", "texto": "Casa em ordem, silêncio absoluto e tudo no lugar certo", "estilo": "minimalista" }
+      ]
+    },
+    {
+      "id": "q2",
+      "pergunta": "Qual dessas palavras mais descreve o ambiente dos seus sonhos?",
+      "opcoes": [
+        { "emoji": "🏛️", "texto": "Grandioso", "estilo": "classico" },
+        { "emoji": "🧶", "texto": "Aconchegante", "estilo": "escandinavo" },
+        { "emoji": "⚙️", "texto": "Autêntico", "estilo": "industrial" },
+        { "emoji": "✨", "texto": "Surpreendente", "estilo": "contemporaneo" },
+        { "emoji": "○",  "texto": "Sereno", "estilo": "minimalista" }
+      ]
+    },
+    {
+      "id": "q3",
+      "pergunta": "Você recebe um presente: uma peça de decoração. Qual você abraçaria?",
+      "opcoes": [
+        { "emoji": "🪞", "texto": "Um espelho dourado com moldura trabalhada", "estilo": "classico" },
+        { "emoji": "🌿", "texto": "Um vaso de cerâmica artesanal com uma planta", "estilo": "escandinavo" },
+        { "emoji": "💡", "texto": "Uma luminária de ferro com lâmpada Edison", "estilo": "industrial" },
+        { "emoji": "🎨", "texto": "Uma escultura abstrata em resina colorida", "estilo": "contemporaneo" },
+        { "emoji": "🪨", "texto": "Uma tigela de pedra natural — sem enfeites", "estilo": "minimalista" }
+      ]
+    },
+    {
+      "id": "q4",
+      "pergunta": "Qual piso te faria entrar num cômodo e pensar 'esse é o lugar'?",
+      "opcoes": [
+        { "emoji": "⬜", "texto": "Mármore branco com veios dourados", "estilo": "classico" },
+        { "emoji": "🪵", "texto": "Tacos de madeira clara em espinha de peixe", "estilo": "escandinavo" },
+        { "emoji": "🧱", "texto": "Concreto polido com textura aparente", "estilo": "industrial" },
+        { "emoji": "◼",  "texto": "Porcelanato grande formato fosco cinza", "estilo": "contemporaneo" },
+        { "emoji": "▪️", "texto": "Cimento queimado em tom único, limpo", "estilo": "minimalista" }
+      ]
+    },
+    {
+      "id": "q5",
+      "pergunta": "Você está escolhendo a cor das paredes da sala. Qual te atrai?",
+      "opcoes": [
+        { "emoji": "🤍", "texto": "Off-white com molduras em gesso — clássico e elegante", "estilo": "classico" },
+        { "emoji": "🌱", "texto": "Branco puro com detalhes em madeira natural", "estilo": "escandinavo" },
+        { "emoji": "🩶", "texto": "Concreto aparente ou cinza escuro fosco", "estilo": "industrial" },
+        { "emoji": "🎨", "texto": "Verde musgo ou azul petróleo — ousado e atual", "estilo": "contemporaneo" },
+        { "emoji": "◻️", "texto": "Branco total. Paredes, teto, rodapé — tudo igual", "estilo": "minimalista" }
+      ]
+    },
+    {
+      "id": "q6",
+      "pergunta": "Uma mesa de jantar. Qual te representa?",
+      "opcoes": [
+        { "emoji": "🍽️", "texto": "Madeira maciça escura com pés torneados e cadeiras estofadas", "estilo": "classico" },
+        { "emoji": "🌾", "texto": "Carvalho claro, pés palito finos, cadeiras com assento em couro natural", "estilo": "escandinavo" },
+        { "emoji": "🔩", "texto": "Tampo de madeira bruta com base em metal preto soldado", "estilo": "industrial" },
+        { "emoji": "✦",  "texto": "Tampo de vidro fumê ou mármore com base geométrica em aço", "estilo": "contemporaneo" },
+        { "emoji": "⬜", "texto": "Tampo em laca branca, pés invisíveis, sem ornamentos", "estilo": "minimalista" }
+      ]
+    },
+    {
+      "id": "q7",
+      "pergunta": "Qual foto de quarto te faria salvar no Instagram agora?",
+      "opcoes": [
+        { "emoji": "👑", "texto": "Cama king com cabeceira estofada, cortinas pesadas e criados-mudos simétricos", "estilo": "classico" },
+        { "emoji": "🌤️", "texto": "Cama baixa em madeira clara, roupa de cama branca e luz natural forte", "estilo": "escandinavo" },
+        { "emoji": "🏭", "texto": "Parede de tijolo, cama com cabeceira em ferro, lâmpada industrial pendente", "estilo": "industrial" },
+        { "emoji": "🎭", "texto": "Quarto com painel de parede texturizado e iluminação cênica embutida", "estilo": "contemporaneo" },
+        { "emoji": "🌑", "texto": "Quarto quase vazio: cama, uma luminária, uma planta. Só.", "estilo": "minimalista" }
+      ]
+    },
+    {
+      "id": "q8",
+      "pergunta": "Por último — qual frase ressoa com você?",
+      "opcoes": [
+        { "emoji": "✨", "texto": "Coisas belas nunca saem de moda", "estilo": "classico" },
+        { "emoji": "🔥", "texto": "A vida é melhor quando é simples e quente", "estilo": "escandinavo" },
+        { "emoji": "🤘", "texto": "Prefiro real a perfeito", "estilo": "industrial" },
+        { "emoji": "⚡", "texto": "Gosto do que surpreende e provoca", "estilo": "contemporaneo" },
+        { "emoji": "🎯", "texto": "Cada coisa no lugar certo. Nada a mais.", "estilo": "minimalista" }
+      ]
+    }
+  ],
+  "estilos": {
+    "classico": {
+      "nome": "Clássico & Neoclássico",
+      "cor": "#B8965A",
+      "palavra": "Elegância Atemporal",
+      "descricao": "Você tem um gosto refinado e atemporal. Seu espaço ideal celebra a elegância sem abrir mão do conforto — molduras, detalhes simétricos, tecidos nobres e uma paleta que nunca sai de moda.",
+      "frase": "Seu lar deveria parecer um lugar que o tempo respeita.",
+      "fotos": [
+        { "label": "Sala de Estar", "url": "https://images.unsplash.com/photo-1600210491369-e753d80a41f3?w=800&q=80" },
+        { "label": "Cozinha",       "url": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80" },
+        { "label": "Quarto",        "url": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80" }
+      ],
+      "itens": [
+        { "icon": "🪞", "titulo": "Espelhos com moldura dourada",  "desc": "Peças que ampliam e enaltecem qualquer ambiente com grandiosidade discreta." },
+        { "icon": "🛋️", "titulo": "Sofá Chesterfield ou capitonê", "desc": "Estofados com botões e pés torneados que definem o charme clássico britânico." },
+        { "icon": "🕯️", "titulo": "Lustre de cristal ou bronze",   "desc": "Iluminação que vira peça de arte — ponto focal de qualquer sala." },
+        { "icon": "🌿", "titulo": "Mármore em bancadas e pisos",   "desc": "Material nobre por excelência, que traz peso e sofisticação duradouros." },
+        { "icon": "📐", "titulo": "Sancas e molduras de gesso",    "desc": "Detalhes arquitetônicos nas paredes e teto que elevam o nível do projeto." }
+      ]
+    },
+    "escandinavo": {
+      "nome": "Escandinavo",
+      "cor": "#7A9E8E",
+      "palavra": "Leveza com Propósito",
+      "descricao": "Funcionalidade e beleza andam juntas no seu mundo. Você valoriza o essencial, ama luz natural, madeira clara e aquela sensação de leveza que só um espaço bem editado consegue transmitir.",
+      "frase": "O melhor espaço é aquele onde você respira fundo ao entrar.",
+      "fotos": [
+        { "label": "Sala de Estar", "url": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80" },
+        { "label": "Cozinha",       "url": "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=800&q=80" },
+        { "label": "Quarto",        "url": "https://images.unsplash.com/photo-1505693314120-0d443867891c?w=800&q=80" }
+      ],
+      "itens": [
+        { "icon": "🪵", "titulo": "Madeira clara (carvalho ou pinho)",      "desc": "Textura natural que aquece sem pesar — alma do design nórdico." },
+        { "icon": "🧶", "titulo": "Texturas têxteis sobrepostas",            "desc": "Tapetes de lã, mantas de linho, almofadas de tricô — camadas que aconchegam." },
+        { "icon": "💡", "titulo": "Iluminação pendente minimalista",         "desc": "Luminárias simples e impactantes que viram joias no teto." },
+        { "icon": "🌱", "titulo": "Plantas em vasos de cerâmica",            "desc": "Elemento vivo que traz equilíbrio e cor sem esforço." },
+        { "icon": "🪑", "titulo": "Cadeira Wishbone ou estilo Hans Wegner", "desc": "Ícone do design escandinavo: orgânica, artesanal, perfeita." }
+      ]
+    },
+    "industrial": {
+      "nome": "Industrial",
+      "cor": "#8B7355",
+      "palavra": "Autenticidade Bruta",
+      "descricao": "Você não tem medo de mostrar estrutura. Gosta de autenticidade, materiais brutos e espaços que contam uma história sem precisar de enfeites. Concreto, metal e madeira são sua linguagem.",
+      "frase": "Seu espaço tem coragem de ser exatamente o que é.",
+      "fotos": [
+        { "label": "Sala de Estar", "url": "https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?w=800&q=80" },
+        { "label": "Cozinha",       "url": "https://images.unsplash.com/photo-1556909211-36987daf7b4d?w=800&q=80" },
+        { "label": "Quarto",        "url": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80" }
+      ],
+      "itens": [
+        { "icon": "🧱", "titulo": "Tijolo aparente ou cimento queimado",          "desc": "Superfícies que expõem o processo — beleza no imperfeito." },
+        { "icon": "🔩", "titulo": "Estruturas metálicas aparentes",               "desc": "Prateleiras, pés de mesa e trilhos em ferro preto que definem o estilo." },
+        { "icon": "💡", "titulo": "Luminária tipo Edison ou pendente industrial", "desc": "Lâmpadas expostas com filamento e globos metálicos — estética icônica." },
+        { "icon": "🪵", "titulo": "Madeira de demolição ou reaproveitada",        "desc": "Imperfeições que contam história — peças únicas com alma." },
+        { "icon": "🛋️", "titulo": "Couro legítimo no estofado",                   "desc": "Material que envelhece bem e ganha personalidade com o tempo." }
+      ]
+    },
+    "contemporaneo": {
+      "nome": "Contemporâneo",
+      "cor": "#5B7FA6",
+      "palavra": "Sofisticação do Presente",
+      "descricao": "Você está sempre atualizado, mas sem seguir modismo. Gosta de linhas limpas, mix de materiais e ambientes que parecem ter sido pensados por alguém muito criativo — porque foram.",
+      "frase": "Seu espaço merece ser tão interessante quanto você.",
+      "fotos": [
+        { "label": "Sala de Estar", "url": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80" },
+        { "label": "Cozinha",       "url": "https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?w=800&q=80" },
+        { "label": "Quarto",        "url": "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=800&q=80" }
+      ],
+      "itens": [
+        { "icon": "🖼️", "titulo": "Arte contemporânea como ponto focal",   "desc": "Uma peça forte na parede que ancora todo o projeto e diz muito sobre você." },
+        { "icon": "✦",  "titulo": "Mix de materiais — vidro, aço e madeira","desc": "Combinações inesperadas que criam tensão criativa no ambiente." },
+        { "icon": "🪟", "titulo": "Grandes aberturas para o exterior",      "desc": "A natureza como elemento decorativo — integração total." },
+        { "icon": "💡", "titulo": "Iluminação cênica e indireta",           "desc": "Faixas de LED embutidas e spots direcionais que criam atmosfera." },
+        { "icon": "🛁", "titulo": "Banheiro como spa privativo",            "desc": "Porcelanato de grande formato, cuba esculpida e torneiras de design." }
+      ]
+    },
+    "minimalista": {
+      "nome": "Minimalista",
+      "cor": "#9E9E8E",
+      "palavra": "Precisão e Silêncio",
+      "descricao": "Para você, menos sempre foi mais. Você enxerga beleza no espaço vazio, na linha perfeita, na ausência de ruído visual. Seu ambiente ideal é quase uma meditação — silencioso, preciso, intencional.",
+      "frase": "O espaço ideal não tem nada que não precisa estar lá.",
+      "fotos": [
+        { "label": "Sala de Estar", "url": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80" },
+        { "label": "Cozinha",       "url": "https://images.unsplash.com/photo-1556909045-b2d7b9916618?w=800&q=80" },
+        { "label": "Quarto",        "url": "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=80" }
+      ],
+      "itens": [
+        { "icon": "⬜", "titulo": "Paleta monocromática ou neutros puros", "desc": "Branco, off-white, cinza e bege — cores que somem e deixam a forma falar." },
+        { "icon": "🪟", "titulo": "Marcenaria embutida do piso ao teto",  "desc": "Tudo escondido. Sem puxadores, sem bordas — superfícies limpas." },
+        { "icon": "🧘", "titulo": "Mobiliário de linhas retas e baixo",   "desc": "Peças próximas ao chão que criam sensação de amplitude." },
+        { "icon": "💡", "titulo": "Iluminação totalmente embutida",       "desc": "Spots no forro que iluminam sem aparecer — luz que some na arquitetura." },
+        { "icon": "🌿", "titulo": "Uma planta. Só uma.",                  "desc": "O contraste perfeito — o elemento orgânico que quebra a precisão com leveza." }
+      ]
+    }
+  }
+}

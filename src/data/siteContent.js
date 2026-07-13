@@ -205,6 +205,7 @@ export const home = {
   nav: [
     { id: "inicio", label: "Início", type: "scroll" },
     { id: "projetos", label: "Projetos", type: "scroll" },
+    { id: "diagnostico", label: "Diagnóstico", type: "scroll" },
     { id: "escritorio", label: "Escritório", type: "scroll" },
     { id: "contato", label: "Contato", type: "modal" },
   ],

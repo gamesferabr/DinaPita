@@ -4,6 +4,7 @@ import { ref } from "vue";
 defineProps({
   brandName: { type: String, default: "Dina Pita" },
   monograma: { type: String, default: "dp" },
+  logoSrc: { type: String, default: "" },
   items: { type: Array, required: true },
   ctaLabel: { type: String, default: "Fale comigo" },
 });
@@ -26,7 +27,10 @@ function onCta() {
   <div class="gm-nav">
     <nav class="gm-nav__bar" aria-label="Navegação principal">
       <a class="gm-nav__brand" href="#inicio" @click.prevent="onNav({ id: 'inicio', type: 'scroll' })">
-        <span class="gm-nav__mark">{{ monograma }}</span>
+        <span class="gm-nav__mark">
+          <img v-if="logoSrc" class="gm-nav__logo" :src="logoSrc" :alt="brandName" />
+          <template v-else>{{ monograma }}</template>
+        </span>
         <span class="gm-nav__brand-name">{{ brandName }}</span>
       </a>
 
