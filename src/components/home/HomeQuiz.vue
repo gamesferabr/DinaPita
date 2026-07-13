@@ -8,6 +8,13 @@ const props = defineProps({
 const phase = ref("intro");
 const current = ref(0);
 const answers = ref([]);
+const brokenFotos = ref([]);
+
+function onFotoError(url) {
+  if (!brokenFotos.value.includes(url)) {
+    brokenFotos.value.push(url);
+  }
+}
 
 const perguntas = computed(() => props.data.perguntas);
 const total = computed(() => perguntas.value.length);
@@ -120,7 +127,14 @@ function refazer() {
 
         <div class="gm-quiz__fotos">
           <figure v-for="foto in resultado.fotos" :key="foto.url">
-            <img :src="foto.url" :alt="foto.label" loading="lazy" />
+            <img
+              v-if="!brokenFotos.includes(foto.url)"
+              :src="foto.url"
+              :alt="foto.label"
+              loading="lazy"
+              @error="onFotoError(foto.url)"
+            />
+            <div v-else class="gm-quiz__foto-fallback" aria-hidden="true" />
             <figcaption>{{ foto.label }}</figcaption>
           </figure>
         </div>
