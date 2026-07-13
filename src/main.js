@@ -3,6 +3,7 @@ import App from "./App.vue";
 import { revealDirective } from "./directives/reveal.js";
 import "../css/styles.css";
 import "../css/shell.css";
+import "../css/gm-theme.css";
 
 const app = createApp(App);
 app.directive("reveal", revealDirective);

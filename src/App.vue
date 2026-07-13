@@ -1,26 +1,20 @@
 <script setup>
-import { watch } from "vue";
-import { projetos, brand, contato } from "./data/siteContent.js";
-import { useScrollTo } from "./composables/useScrollTo.js";
-import { useNavTone } from "./composables/useNavTone.js";
-import { useDarkSection } from "./composables/useDarkSection.js";
-import { useParallax } from "./composables/useParallax.js";
+import { projetos, servicos, contato, brand, home } from "./data/siteContent.js";
 import { useUrlModal } from "./composables/useUrlModal.js";
-import SiteShellNav from "./components/SiteShellNav.vue";
-import InteractiveScroller from "./components/InteractiveScroller.vue";
-import ProjectsIntroSection from "./components/ProjectsIntroSection.vue";
-import ShowcaseVideoSection from "./components/ShowcaseVideoSection.vue";
-import LocationSection from "./components/LocationSection.vue";
-import ProjectsSection from "./components/ProjectsSection.vue";
-import SiteFooter from "./components/SiteFooter.vue";
+import HomeNav from "./components/home/HomeNav.vue";
+import HomeHero from "./components/home/HomeHero.vue";
+import HomeMarquee from "./components/home/HomeMarquee.vue";
+import HomeIntro from "./components/home/HomeIntro.vue";
+import HomeServices from "./components/home/HomeServices.vue";
+import HomeCases from "./components/home/HomeCases.vue";
+import HomeServicesList from "./components/home/HomeServicesList.vue";
+import HomeCta from "./components/home/HomeCta.vue";
+import HomeFooter from "./components/home/HomeFooter.vue";
 import ProjectModal from "./components/ProjectModal.vue";
 import ProjectFullscreen from "./components/ProjectFullscreen.vue";
 import ContactModal from "./components/ContactModal.vue";
 
 const ano = new Date().getFullYear();
-const { menuOpen, scrollTo } = useScrollTo();
-const { heroIsVisible } = useNavTone("#topo");
-const { isOverDark } = useDarkSection(["#topo", ".footer__content"]);
 const {
   openProject,
   contactOpen,
@@ -31,21 +25,19 @@ const {
   closeAll,
 } = useUrlModal(projetos);
 
-useParallax("[data-parallax]");
-
-function toggleMenu() {
-  menuOpen.value = !menuOpen.value;
+function scrollToId(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
-/** O nav e o footer chamam `go(id)` para itens do menu — interceptamos
- * "contato" para abrir o modal em vez de apenas rolar. */
-function go(id) {
-  menuOpen.value = false;
-  if (id === "contato") {
+function onNav(item) {
+  if (item.type === "modal") {
     openContactModal();
     return;
   }
-  scrollTo(id);
+  scrollToId(item.id);
 }
 
 function onProjectModalClose(payload) {
@@ -54,58 +46,45 @@ function onProjectModalClose(payload) {
     openContactModal();
   }
 }
-
-watch(menuOpen, (open) => {
-  document.body.classList.toggle("nav-open", open);
-});
 </script>
 
 <template>
-  <div class="app app--shell DefaultPage" :class="{ 'app--fullscreen': fullscreen }">
-    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <div class="gm-root" :class="{ 'app--fullscreen': fullscreen }">
+    <template v-if="!fullscreen">
+      <HomeNav
+        :items="home.nav"
+        :monograma="brand.monograma"
+        :cta-label="home.hero.ctaPrimario"
+        @nav="onNav"
+        @cta="openContactModal"
+      />
 
-    <SiteShellNav
-      v-if="!fullscreen"
-      :menu-open="menuOpen"
-      :hero-nav="heroIsVisible"
-      :logo-src="brand.logoPreto"
-      @toggle-menu="toggleMenu"
-      @scroll-to="scrollTo"
-      @go="go"
-    />
+      <main id="conteudo">
+        <HomeHero
+          :hero="home.hero"
+          @cta="openContactModal"
+          @ver-projetos="scrollToId('projetos')"
+        />
+        <HomeMarquee :items="home.marquee" />
+        <HomeIntro :statement="home.statement" />
+        <HomeServices :cards="home.serviceCards" />
+        <HomeCases :projects="projetos" @open-project="openProjectModal" />
+        <HomeServicesList :servicos="servicos" />
+        <HomeCta
+          :cta="home.cta"
+          :whatsapp-url="contato.whatsappUrl"
+          @mensagem="openContactModal"
+        />
+        <HomeFooter
+          :ano="ano"
+          :contato="contato"
+          :items="home.nav"
+          @nav="onNav"
+          @contato="openContactModal"
+        />
+      </main>
+    </template>
 
-    <InteractiveScroller v-if="!fullscreen" :light-track="isOverDark" />
-
-    <main id="main-container" class="scroll-container" aria-live="polite">
-      <div
-        id="conteudo"
-        class="page-content page-content--dinapita projects-page static"
-        data-background-color="white"
-      >
-        <div class="page-content_inner">
-          <div id="scroll" class="o-scroll">
-            <div class="scroll-content">
-              <ShowcaseVideoSection />
-              <LocationSection />
-              <ProjectsSection
-                :projects="projetos"
-                @go="go"
-                @open-project="openProjectModal"
-              />
-              <SiteFooter
-                :ano="ano"
-                :logo-src="brand.logoPreto"
-                :logo-branco-src="brand.logoBranco"
-                @scroll-to="scrollTo"
-                @go="go"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- Fullscreen quando a URL é aberta direto (nova aba/refresh) -->
     <ProjectFullscreen
       v-if="fullscreen && openProject"
       :project="openProject"
@@ -114,7 +93,6 @@ watch(menuOpen, (open) => {
       @close="closeAll"
     />
 
-    <!-- Modal lateral quando o projeto é aberto por clique interno -->
     <ProjectModal
       v-if="!fullscreen"
       :project="openProject"

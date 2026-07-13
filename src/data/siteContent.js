@@ -197,4 +197,64 @@ export const contato = {
 export const brand = {
   logoPreto: "/assets/logo-dina-preto.png",
   logoBranco: "/assets/logo-dina-branco.png",
+  monograma: "dp",
+};
+
+/** Conteúdo da nova home editorial (estilo warm/rounded). */
+export const home = {
+  nav: [
+    { id: "inicio", label: "Início", type: "scroll" },
+    { id: "projetos", label: "Projetos", type: "scroll" },
+    { id: "escritorio", label: "Escritório", type: "scroll" },
+    { id: "contato", label: "Contato", type: "modal" },
+  ],
+  hero: {
+    eyebrow: "Arquitetura & Interiores",
+    titulo: "Dina Pita",
+    subtitulo:
+      "Arquiteta e diretora de projetos. Transformo terreno, luz e desejo em espaços com propósito — do primeiro croqui à entrega da obra.",
+    imagem:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80",
+    imagemAlt: "Interior de arquitetura contemporânea — substituir por foto do escritório",
+    ctaPrimario: "Fale comigo",
+    ctaSecundario: "Ver projetos",
+  },
+  marquee: [
+    "Arquitetura",
+    "Interiores",
+    "Reforma",
+    "Retrofit",
+    "Paisagismo",
+    "Consultoria",
+    "Visualização 3D",
+  ],
+  statement: {
+    intro: "Projeto",
+    destaque: "com intenção,",
+    resto:
+      "técnica e sensibilidade. Meu trabalho conecta partido, materialidade e luz para transformar ideias em espaços reais de viver e trabalhar. Não entrego apenas plantas — entrego direção, clareza e obra com identidade.",
+  },
+  serviceCards: [
+    {
+      titulo: "Projeto & Interiores",
+      texto:
+        "Do conceito à obra: arquitetura e interiores integrados, desenhados para o seu modo de viver.",
+    },
+    {
+      titulo: "Reforma & Retrofit",
+      texto:
+        "Requalificação de espaços existentes com foco em luz natural, fluxo e materialidade honesta.",
+    },
+    {
+      titulo: "Consultoria & 3D",
+      texto:
+        "Consultoria de materiais, iluminação e imagens 3D para você decidir com clareza antes de construir.",
+    },
+  ],
+  cta: {
+    titulo: "Vamos começar seu projeto",
+    subtitulo: "Cada projeto começa com uma conversa sobre visão, propósito e espaço.",
+    whatsapp: "Fale no WhatsApp",
+    secundario: "Enviar mensagem",
+  },
 };
