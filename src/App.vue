@@ -15,15 +15,12 @@ import HomeCta from "./components/home/HomeCta.vue";
 import HomeFooter from "./components/home/HomeFooter.vue";
 import ProjectModal from "./components/ProjectModal.vue";
 import ProjectFullscreen from "./components/ProjectFullscreen.vue";
-import ContactModal from "./components/ContactModal.vue";
 
 const ano = new Date().getFullYear();
 const {
   openProject,
-  contactOpen,
   fullscreen,
   openProjectModal,
-  openContactModal,
   selectProject,
   closeAll,
 } = useUrlModal(projetos);
@@ -35,9 +32,13 @@ function scrollToId(id) {
   }
 }
 
+function openWhatsapp() {
+  window.open(contato.whatsappUrl, "_blank", "noopener");
+}
+
 function onNav(item) {
   if (item.type === "modal") {
-    openContactModal();
+    openWhatsapp();
     return;
   }
   scrollToId(item.id);
@@ -46,7 +47,7 @@ function onNav(item) {
 function onProjectModalClose(payload) {
   closeAll();
   if (payload && payload.open === "contato") {
-    openContactModal();
+    openWhatsapp();
   }
 }
 </script>
@@ -59,14 +60,14 @@ function onProjectModalClose(payload) {
         :monograma="brand.monograma"
         :logo-src="withBasePath(brand.logoPreto)"
         :cta-label="home.hero.ctaPrimario"
+        :whatsapp-url="contato.whatsappUrl"
         @nav="onNav"
-        @cta="openContactModal"
       />
 
       <main id="conteudo">
         <HomeHero
           :hero="home.hero"
-          @cta="openContactModal"
+          :whatsapp-url="contato.whatsappUrl"
           @ver-projetos="scrollToId('projetos')"
           @diagnostico="scrollToId('diagnostico')"
         />
@@ -76,17 +77,13 @@ function onProjectModalClose(payload) {
         <HomeCases :projects="projetos" @open-project="openProjectModal" />
         <HomeQuiz :data="diagnostico" />
         <HomeServicesList :servicos="servicos" />
-        <HomeCta
-          :cta="home.cta"
-          :whatsapp-url="contato.whatsappUrl"
-          @mensagem="openContactModal"
-        />
+        <HomeCta :cta="home.cta" :whatsapp-url="contato.whatsappUrl" />
         <HomeFooter
           :ano="ano"
           :contato="contato"
           :items="home.nav"
           @nav="onNav"
-          @contato="openContactModal"
+          @contato="openWhatsapp"
         />
       </main>
     </template>
@@ -105,7 +102,5 @@ function onProjectModalClose(payload) {
       :project="openProject"
       @close="onProjectModalClose"
     />
-
-    <ContactModal :open="contactOpen" :contact="contato" @close="closeAll" />
   </div>
 </template>

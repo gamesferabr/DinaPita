@@ -3,8 +3,6 @@ defineProps({
   cta: { type: Object, required: true },
   whatsappUrl: { type: String, required: true },
 });
-
-const emit = defineEmits(["mensagem"]);
 </script>
 
 <template>
@@ -28,9 +26,6 @@ const emit = defineEmits(["mensagem"]);
         </svg>
         {{ cta.whatsapp }}
       </a>
-      <button type="button" class="gm-btn gm-btn--ghost" @click="emit('mensagem')">
-        {{ cta.secundario }}
-      </button>
     </div>
   </section>
 </template>

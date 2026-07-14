@@ -7,9 +7,10 @@ defineProps({
   logoSrc: { type: String, default: "" },
   items: { type: Array, required: true },
   ctaLabel: { type: String, default: "Fale comigo" },
+  whatsappUrl: { type: String, default: "" },
 });
 
-const emit = defineEmits(["nav", "cta"]);
+const emit = defineEmits(["nav"]);
 const mobileOpen = ref(false);
 
 function onNav(item) {
@@ -17,9 +18,8 @@ function onNav(item) {
   emit("nav", item);
 }
 
-function onCta() {
+function closeMobile() {
   mobileOpen.value = false;
-  emit("cta");
 }
 </script>
 
@@ -44,9 +44,14 @@ function onCta() {
         >
           {{ item.label }}
         </a>
-        <button type="button" class="gm-btn gm-btn--ink gm-nav__cta" @click="onCta">
+        <a
+          class="gm-btn gm-btn--ink gm-nav__cta"
+          :href="whatsappUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {{ ctaLabel }}
-        </button>
+        </a>
       </div>
 
       <button
@@ -69,7 +74,9 @@ function onCta() {
       >
         {{ item.label }}
       </a>
-      <button type="button" @click="onCta">{{ ctaLabel }}</button>
+      <a :href="whatsappUrl" target="_blank" rel="noopener noreferrer" @click="closeMobile">
+        {{ ctaLabel }}
+      </a>
     </div>
   </div>
 </template>

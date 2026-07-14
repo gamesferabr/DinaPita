@@ -1,9 +1,10 @@
 <script setup>
 defineProps({
   hero: { type: Object, required: true },
+  whatsappUrl: { type: String, default: "" },
 });
 
-const emit = defineEmits(["cta", "ver-projetos", "diagnostico"]);
+const emit = defineEmits(["ver-projetos", "diagnostico"]);
 </script>
 
 <template>
@@ -16,9 +17,14 @@ const emit = defineEmits(["cta", "ver-projetos", "diagnostico"]);
         <p class="gm-hero__sub">{{ hero.subtitulo }}</p>
 
         <div class="gm-hero__actions">
-          <button type="button" class="gm-btn gm-btn--light gm-hero__cta" @click="emit('cta')">
+          <a
+            class="gm-btn gm-btn--light gm-hero__cta"
+            :href="whatsappUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {{ hero.ctaPrimario }}
-          </button>
+          </a>
           <button type="button" class="gm-btn gm-btn--ghost" @click="emit('diagnostico')">
             {{ hero.ctaDiagnostico }}
           </button>
