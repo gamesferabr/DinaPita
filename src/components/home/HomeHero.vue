@@ -17,17 +17,21 @@ const emit = defineEmits(["ver-projetos", "diagnostico"]);
         <p class="gm-hero__sub">{{ hero.subtitulo }}</p>
 
         <div class="gm-hero__actions">
-          <a
+          <button
+            type="button"
             class="gm-btn gm-btn--light gm-hero__cta"
+            @click="emit('diagnostico')"
+          >
+            {{ hero.ctaDiagnostico }}
+          </button>
+          <a
+            class="gm-btn gm-btn--ghost"
             :href="whatsappUrl"
             target="_blank"
             rel="noopener noreferrer"
           >
             {{ hero.ctaPrimario }}
           </a>
-          <button type="button" class="gm-btn gm-btn--ghost" @click="emit('diagnostico')">
-            {{ hero.ctaDiagnostico }}
-          </button>
         </div>
       </div>
     </div>
