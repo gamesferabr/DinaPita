@@ -174,10 +174,10 @@ export const contato = {
   email: "contato@dinapita.com",
   /**
    * Link do WhatsApp da agência (número internacional, sem + nem espaços).
-   * Trocar 5521999999999 pelo número real ao publicar.
+   * Número real do cliente (mesmo do diagnóstico): +55 13 99130-5208.
    */
   whatsappUrl:
-    "https://wa.me/5521999999999?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20o%20escrit%C3%B3rio.",
+    "https://wa.me/5513991305208?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20conversar%20com%20o%20escrit%C3%B3rio.",
   whatsappHeadline: "Bora falar de projeto pelo WhatsApp?",
   whatsappSub: "Manda uma mensagem — a gente responde em horário comercial.",
   endereco: ["Rua dos Arquitetos, 000", "São Paulo — SP, Brasil"],

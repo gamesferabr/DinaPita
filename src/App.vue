@@ -95,6 +95,7 @@ function onProjectModalClose(payload) {
       v-if="fullscreen && openProject"
       :project="openProject"
       :projects="projetos"
+      :whatsapp-url="contato.whatsappUrl"
       @select="selectProject"
       @close="closeAll"
     />
