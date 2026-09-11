@@ -1,5 +1,9 @@
 /** Conteúdo editável do site — serviços, projetos e contato */
 
+import { withBasePath } from "../utils/basePath.js";
+
+const localImg = (path) => withBasePath(path);
+
 export const servicos = [
   "Estratégia e programação arquitetônica",
   "Projeto arquitetônico e interiores",
@@ -9,164 +13,160 @@ export const servicos = [
   "Visualização 3D / imagens de projeto",
 ];
 
-/**
- * Imagens de teste usam picsum.photos com seed fixo (mesma foto em cada reload).
- * Para substituir pelas fotos reais, troque a URL de cada projeto.
- */
-const testImg = (seed, w = 900, h = 1200) =>
-  `https://picsum.photos/seed/${seed}/${w}/${h}`;
+function projeto({ id, slug, tipo, nome, resumo, pasta, fotos, alt, funcao }) {
+  const [cover, ...resto] = fotos;
+  return {
+    id,
+    slug,
+    tipo,
+    nome,
+    resumo,
+    descricao: [
+      resumo,
+      "Fotos do acervo do escritório — textos definitivos ainda podem ser ajustados.",
+    ],
+    meta: { Função: funcao },
+    img: localImg(`/assets/projetos/${pasta}/${cover}`),
+    galeria: resto.map((arquivo) => localImg(`/assets/projetos/${pasta}/${arquivo}`)),
+    alt,
+    href: `/projetos/${slug}`,
+  };
+}
 
-const galeria = (seedBase) => [
-  testImg(`${seedBase}-01`, 1600, 1100),
-  testImg(`${seedBase}-02`, 1600, 1100),
-  testImg(`${seedBase}-03`, 1200, 1500),
-  testImg(`${seedBase}-04`, 1600, 900),
-];
-
+/** Portfólio = só projetos com fotos do cliente (zip SITE-DP). */
 export const projetos = [
-  {
+  projeto({
     id: 1,
-    slug: "casa-lago-azul",
-    tipo: "Residencial",
-    nome: "Casa Lago Azul",
-    resumo:
-      "Residência de 420 m² implantada em terreno arborizado, com setorização em três blocos interligados por um pátio central.",
-    descricao: [
-      "A Casa Lago Azul nasce do encontro entre topografia acidentada e um pedido de privacidade absoluta. Optamos por fragmentar o programa em três blocos baixos, cada um com pé-direito e materialidade próprias, conectados por um pátio coberto que serve de pulmão da casa.",
-      "Madeira nativa certificada, concreto aparente apicoado e caixilhos pretos finos compõem o repertório. O paisagismo, em parceria com o estúdio Mira Jardins, mantém a vegetação nativa preexistente e introduz espécies endêmicas de baixa manutenção.",
-      "A iluminação foi pensada em três camadas — ambiente, tarefa e cênica — e o sistema de automação dialoga com a passagem do sol, fechando brises automaticamente nas horas mais quentes.",
-    ],
-    meta: {
-      Local: "Itaipava, RJ",
-      Ano: "2024",
-      Área: "420 m²",
-      Função: "Projeto arquitetônico e interiores",
-      Equipe: "Dina Pita (autora), Ana Luiza, Rodrigo Mello",
-    },
-    img: testImg("dina-residencial"),
-    galeria: galeria("dina-residencial"),
-    alt: "Foto de teste — projeto residencial",
-    href: "/projetos/casa-lago-azul",
-  },
-  {
-    id: 2,
-    slug: "loja-vinte-onze",
+    slug: "allto-al-mar",
     tipo: "Comercial",
-    nome: "Loja Vinte Onze",
+    nome: "Allto al Mar",
     resumo:
-      "Flagship de 180 m² desenhada como peça única: um gesto curvo em painéis ripados organiza vitrine, caixa e provador.",
-    descricao: [
-      "A flagship da Vinte Onze pedia uma identidade espacial tão forte quanto a tipografia da marca. Resolvemos com um único gesto: uma curva contínua de painéis de freijó que percorre a loja inteira, organizando vitrine, caixa, provador e estoque sem interrupções.",
-      "O mobiliário central é móvel — araras, mesas e bancos podem ser reconfigurados a cada coleção, dando à equipe da marca autonomia para reinventar o espaço sem chamar arquitetos novamente.",
-      "Iluminação pensada em três camadas reforça a escala do produto e a presença da marca quando vista da rua, mesmo com a loja fechada.",
-    ],
-    meta: {
-      Local: "Vila Madalena, SP",
-      Ano: "2025",
-      Área: "180 m²",
-      Função: "Projeto comercial e identidade espacial",
-      Equipe: "Dina Pita (autora), Carolina Ferraz",
-    },
-    img: testImg("dina-comercial"),
-    galeria: galeria("dina-comercial"),
-    alt: "Foto de teste — projeto comercial",
-    href: "/projetos/loja-vinte-onze",
-  },
-  {
+      "Restaurante com vista para o mar: salão, bar e lounges com materialidade contemporânea e identidade da marca.",
+    pasta: "allto-al-mar",
+    fotos: ["cover.jpg", "01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"],
+    alt: "Recepção do Allto al Mar com letreiro da marca e poltronas pretas",
+    funcao: "Projeto comercial de hospitalidade",
+  }),
+  projeto({
+    id: 2,
+    slug: "planeta-cafe-paris",
+    tipo: "Comercial",
+    nome: "Planeta Café Paris",
+    resumo:
+      "Café com paleta verde, nichos iluminados e balcão de atendimento — identidade espacial completa para operação em shopping.",
+    pasta: "cafe-paris",
+    fotos: ["cover.jpg", "01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"],
+    alt: "Salão do Planeta Café Paris com parede verde e mesas de madeira",
+    funcao: "Projeto comercial de food service",
+  }),
+  projeto({
     id: 3,
-    slug: "apartamento-perdizes",
-    tipo: "Interiores",
-    nome: "Apartamento Perdizes",
+    slug: "clinica",
+    tipo: "Saúde",
+    nome: "Clínica",
     resumo:
-      "Reforma integral de 210 m² com foco em luz natural e permeabilidade entre estar, cozinha e varanda.",
-    descricao: [
-      "A reforma do apartamento em Perdizes começou por demolir todas as divisórias não estruturais entre estar, cozinha e varanda. O resultado é um único grande ambiente atravessado por luz natural durante todo o dia.",
-      "Optamos por uma paleta quase monocromática em tons de pedra, com tapetes de lã natural em pontos específicos para definir os usos. As peças de design autoral brasileiro convivem com o acervo de arte contemporânea do morador.",
-      "A cozinha, antes escondida, virou o coração da casa: ilha em pedra Sabão, marcenaria em freijó tingido escuro e iluminação rebaixada que muda de temperatura ao longo do dia.",
-    ],
-    meta: {
-      Local: "Perdizes, SP",
-      Ano: "2023",
-      Área: "210 m²",
-      Função: "Reforma e interiores",
-      Equipe: "Dina Pita (autora), Felipe Cunha",
-    },
-    img: testImg("dina-interiores"),
-    galeria: galeria("dina-interiores"),
-    alt: "Foto de teste — projeto de interiores",
-    href: "/projetos/apartamento-perdizes",
-  },
-  {
+      "Recepção e espera de clínica: bancada iluminada, assentos em linha e paleta clara de madeira, verde e off-white.",
+    pasta: "clinica",
+    fotos: ["cover.jpg", "01.jpg", "02.jpg"],
+    alt: "Recepção da clínica com bancada e assentos verdes",
+    funcao: "Projeto de interiores para saúde",
+  }),
+  projeto({
     id: 4,
-    slug: "espaco-paineiras",
-    tipo: "Cultural",
-    nome: "Espaço Paineiras",
+    slug: "apartamento-piaui",
+    tipo: "Residencial",
+    nome: "Apartamento Piauí",
     resumo:
-      "Requalificação de um edifício histórico de 1.200 m² para abrigar galeria, biblioteca e auditório.",
-    descricao: [
-      "O Espaço Paineiras é a requalificação de um edifício de 1932 protegido pelo patrimônio. O projeto preserva integralmente a estrutura, alvenarias originais e caixilhos de ferro, e insere um núcleo contemporâneo em aço corten e vidro que resolve acessibilidade, climatização e novos programas.",
-      "A galeria principal ocupa o salão central restaurado; biblioteca e administração ficam no novo núcleo. Um pátio descoberto, recém-aberto na cobertura, traz luz natural até o térreo e funciona como espaço de eventos.",
-      "Cada intervenção nova é deliberadamente legível: contemporânea sem competir com a preexistência, conectando passado e presente sem mimetismo.",
-    ],
-    meta: {
-      Local: "Centro Histórico, RJ",
-      Ano: "2024",
-      Área: "1.200 m²",
-      Função: "Restauro e requalificação",
-      Equipe: "Dina Pita (coordenação), equipe IPHAN, Ateliê Verbo",
-    },
-    img: testImg("dina-cultural"),
-    galeria: galeria("dina-cultural"),
-    alt: "Foto de teste — projeto cultural",
-    href: "/projetos/espaco-paineiras",
-  },
-  {
+      "Interiores residenciais com marcenaria em madeira clara, varanda integrada e ambientes pensados para o dia a dia.",
+    pasta: "ap-piaui",
+    fotos: ["cover.jpg", "01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"],
+    alt: "Estar do Apartamento Piauí, com sofá azul e painel de madeira",
+    funcao: "Projeto de interiores residenciais",
+  }),
+  projeto({
     id: 5,
-    slug: "jardim-mantiqueira",
-    tipo: "Paisagismo",
-    nome: "Jardim Mantiqueira",
+    slug: "apartamento-the-garden",
+    tipo: "Residencial",
+    nome: "Apartamento The Garden",
     resumo:
-      "Paisagismo residencial de 900 m² com espécies predominantemente nativas da Mata Atlântica.",
-    descricao: [
-      "O jardim ocupa toda a área externa de uma residência na Serra da Mantiqueira. O programa mistura áreas contemplativas, de circulação e de convivência, todas atravessadas por percursos em pedra lavrada local.",
-      "A vegetação é predominantemente nativa, com 87% das espécies endêmicas da Mata Atlântica. O sistema de drenagem permeável evita escoamento e alimenta um pequeno espelho d’água com vida.",
-      "A iluminação é discreta e exclusivamente em LED 2700K, posicionada para não interferir na vida noturna local — vagalumes, mariposas e morcegos polinizadores.",
-    ],
-    meta: {
-      Local: "Serra da Mantiqueira, MG",
-      Ano: "2025",
-      Área: "900 m²",
-      Função: "Projeto paisagístico",
-      Equipe: "Dina Pita (autora), Mira Jardins",
-    },
-    img: testImg("dina-paisagismo"),
-    galeria: galeria("dina-paisagismo"),
-    alt: "Foto de teste — paisagismo",
-    href: "/projetos/jardim-mantiqueira",
-  },
-  {
+      "Apartamento com cozinha integrada, jardim vertical e estar aberto para a vista.",
+    pasta: "ap-the-garden",
+    fotos: ["cover.jpg", "01.jpg", "02.jpg", "03.jpg", "04.jpg"],
+    alt: "Cozinha e estar do Apartamento The Garden com jardim vertical",
+    funcao: "Projeto de interiores residenciais",
+  }),
+  projeto({
     id: 6,
-    slug: "mobiliario-sob-medida",
-    tipo: "Objeto",
-    nome: "Móvel sob medida",
+    slug: "apartamento-enguaguacu",
+    tipo: "Residencial",
+    nome: "Apartamento Enguaguaçu",
     resumo:
-      "Família de peças em marcenaria, pedra e metal desenhada sob medida para projetos do escritório.",
-    descricao: [
-      "A linha de móveis sob medida nasceu da insatisfação com peças prontas que diluíam o partido dos projetos. Hoje cada projeto residencial é entregue com pelo menos uma peça desenhada exclusivamente para ele.",
-      "Trabalhamos em parceria com marceneiros, marmoraristas e metalúrgicos do Rio e São Paulo. A prioridade é juntas aparentes, acabamentos tácteis e longevidade — peças pensadas para durarem mais do que o próprio imóvel.",
-      "Algumas dessas peças, depois de testadas no projeto original, viraram pequenas séries limitadas vendidas pelo escritório.",
-    ],
-    meta: {
-      Local: "Brasil",
-      Ano: "Em curso",
-      Tipologias: "Mesas, bancos, estantes, peças de iluminação",
-      Função: "Design de objeto sob medida",
-    },
-    img: testImg("dina-mobiliario"),
-    galeria: galeria("dina-mobiliario"),
-    alt: "Foto de teste — mobiliário sob medida",
-    href: "/projetos/mobiliario-sob-medida",
-  },
+      "Áreas comuns e terraço: estar com jardim vertical, jantar e pergolado em madeira com vista da cidade.",
+    pasta: "ap-enguaguacu",
+    fotos: ["cover.jpg", "01.jpg", "02.jpg", "03.jpg", "04.jpg"],
+    alt: "Lounge do Apartamento Enguaguaçu com sofá branco e jardim vertical",
+    funcao: "Projeto de interiores residenciais",
+  }),
+  projeto({
+    id: 7,
+    slug: "apartamento-sao-jose",
+    tipo: "Residencial",
+    nome: "Apartamento São José",
+    resumo:
+      "Apartamento compacto com estar, jantar e marcenaria em madeira clara, em paleta azul e off-white.",
+    pasta: "ap-sao-jose",
+    fotos: ["cover.jpg", "01.jpg"],
+    alt: "Nicho de estar do Apartamento São José com sofá cinza e marcenaria",
+    funcao: "Projeto de interiores residenciais",
+  }),
+  projeto({
+    id: 8,
+    slug: "apartamento-robert-sandall",
+    tipo: "Residencial",
+    nome: "Apartamento Robert Sandall",
+    resumo:
+      "Cozinha com ilha em madeira, marcenaria bege e iluminação linear contínua.",
+    pasta: "ap-robert-sandall",
+    fotos: ["cover.jpg"],
+    alt: "Cozinha do Apartamento Robert Sandall com ilha e banquetas",
+    funcao: "Projeto de interiores residenciais",
+  }),
+  projeto({
+    id: 9,
+    slug: "apartamento-acqua",
+    tipo: "Residencial",
+    nome: "Apartamento Acqua",
+    resumo:
+      "Sala de jantar com parede em madeira cubo, mesa de vidro e iluminação central.",
+    pasta: "ap-acqua",
+    fotos: ["cover.jpg"],
+    alt: "Sala de jantar do Apartamento Acqua",
+    funcao: "Projeto de interiores residenciais",
+  }),
+  projeto({
+    id: 10,
+    slug: "apartamento-bartolomeu",
+    tipo: "Investidor",
+    nome: "Apartamento Bartolomeu",
+    resumo:
+      "Unidade para investimento: quarto, kitchenette e banho resolvidos em metragem compacta.",
+    pasta: "ap-bartolomeu",
+    fotos: ["cover.jpg", "01.jpg", "02.jpg", "03.jpg", "04.jpg"],
+    alt: "Quarto do Apartamento Bartolomeu com cama azul e remos na parede",
+    funcao: "Interiores para unidade de investimento",
+  }),
+  projeto({
+    id: 11,
+    slug: "apartamento-investidor",
+    tipo: "Investidor",
+    nome: "Apartamento Investidor",
+    resumo:
+      "Studio para investimento com cama, kitchenette e mesa de apoio no mesmo ambiente.",
+    pasta: "ap-investidor",
+    fotos: ["cover.jpg", "01.jpg", "02.jpg"],
+    alt: "Studio do Apartamento Investidor com cama e sofá",
+    funcao: "Interiores para unidade de investimento",
+  }),
 ];
 
 export const contato = {
@@ -183,10 +183,9 @@ export const contato = {
   endereco: ["Rua dos Arquitetos, 000", "São Paulo — SP, Brasil"],
   horario: "Seg–Sex · 9h às 18h",
   /** Foto do local — mesma referência da vitrine (commit original) */
-  fotoLocalUrl:
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-  fotoLocalAlt: "Imagem de arquitetura — substituir por foto do cliente",
-  fotoLocalLegenda: "Imagem provisória — substituir",
+  fotoLocalUrl: localImg("/assets/hero.jpg"),
+  fotoLocalAlt: "Salão do Allto al Mar com vista para o mar",
+  fotoLocalLegenda: "Allto al Mar",
   social: [
     { label: "Instagram", href: "https://instagram.com/" },
     { label: "Behance", href: "https://behance.net/" },
@@ -214,9 +213,8 @@ export const home = {
     titulo: "Dina Pita",
     subtitulo:
       "Arquiteta e diretora de projetos. Transformo terreno, luz e desejo em espaços com propósito — do primeiro croqui à entrega da obra.",
-    imagem:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80",
-    imagemAlt: "Interior de arquitetura contemporânea — substituir por foto do escritório",
+    imagem: localImg("/assets/hero.jpg"),
+    imagemAlt: "Salão do Allto al Mar com mesas, cadeiras verdes e vista para o mar",
     badge: "Diagnóstico de estilo · grátis, 2 minutos",
     ctaDiagnostico: "Descubra seu estilo",
     ctaPrimario: "Fale comigo",

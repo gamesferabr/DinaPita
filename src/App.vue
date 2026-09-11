@@ -74,7 +74,7 @@ function onProjectModalClose(payload) {
         <HomeMarquee :items="home.marquee" />
         <HomeIntro :statement="home.statement" />
         <HomeServices :cards="home.serviceCards" />
-        <HomeCases :projects="projetos" @open-project="openProjectModal" />
+        <HomeCases :projects="projetos" :page-size="12" @open-project="openProjectModal" />
         <HomeQuiz :data="diagnostico" />
         <HomeServicesList :servicos="servicos" />
         <HomeCta :cta="home.cta" :whatsapp-url="contato.whatsappUrl" />
